@@ -1,21 +1,22 @@
 ﻿using System;
+using Microsoft.Xna.Framework;
 
 namespace Protogame.Editor.Layout
 {
-    public class ToolbarButton
+    public class ToolbarButton : Button
     {
-        public ToolbarButton()
-        {
-        }
-
         public ToolbarButton(string text, Action<IGameContext> onClick)
         {
             Text = text;
-            OnClick = onClick;
+            Click += (sender, e) =>
+            {
+                onClick(e.GameContext);
+            };
         }
 
-        public string Text { get; set; }
-
-        public Action<IGameContext> OnClick { get; set; }
+        public override void Render(IRenderContext context, ISkinLayout skinLayout, ISkinDelegator skinDelegator, Rectangle layout)
+        {
+            skinDelegator.Render(context, layout, this);
+        }
     }
 }

@@ -96,6 +96,7 @@
     <Compile Include="Nui\NuiScrollableContainerSkinRenderer.cs" />
     <Compile Include="Nui\NuiSingleContainerSkinRenderer.cs" />
     <Compile Include="Nui\NuiSkinLayout.cs" />
+    <Compile Include="Nui\NuiToolbarButtonSkinRenderer.cs" />
     <Compile Include="Nui\NuiToolbarContainerSkinRenderer.cs" />
     <Compile Include="Nui\NuiTreeViewSkinRenderer.cs" />
     <Compile Include="Override\GameBackBufferDimensions.cs" />

@@ -30,6 +30,7 @@ namespace Protogame.Editor
             kernel.Rebind<ISkinRenderer<HorizontalContainer>>().To<NuiHorizontalContainerSkinRenderer>().InSingletonScope();
             kernel.Rebind<ISkinRenderer<HorizontalSpacedContainer>>().To<NuiHorizontalSpacedContainerSkinRenderer>().InSingletonScope();
             kernel.Rebind<ISkinRenderer<ToolbarContainer>>().To<NuiToolbarContainerSkinRenderer>().InSingletonScope();
+            kernel.Rebind<ISkinRenderer<ToolbarButton>>().To<NuiToolbarButtonSkinRenderer>().InSingletonScope();
             kernel.Rebind<ISkinRenderer<TreeView>>().To<NuiTreeViewSkinRenderer>().InSingletonScope();
             kernel.Rebind<ISkinRenderer<ConsoleContainer>>().To<NuiConsoleContainerSkinRenderer>().InSingletonScope();
 

@@ -28,25 +28,25 @@ namespace Protogame.Editor.Nui
         public void RenderButton(IRenderContext renderContext, Rectangle rectangle)
         {
             RenderButtonInternal(renderContext,
-                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
+                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1), false);
         }
 
         public void RenderPressedButton(IRenderContext renderContext, Rectangle rectangle)
         {
             RenderPressedButtonInternal(renderContext,
-                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
+                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1), false);
         }
         
         public void RenderToggledButton(IRenderContext renderContext, Rectangle rectangle)
         {
             RenderToggledButtonInternal(renderContext,
-                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
+                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1), false);
         }
 
         public void RenderDisabledButton(IRenderContext renderContext, Rectangle rectangle)
         {
             RenderDisabledButtonInternal(renderContext,
-                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1));
+                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1), false);
         }
 
         public void RenderToolbar(IRenderContext renderContext, Rectangle rectangle)
@@ -58,35 +58,70 @@ namespace Protogame.Editor.Nui
                 false,
                 false);
         }
-
-        private void RenderButtonInternal(IRenderContext renderContext, Rectangle rectangle)
+        public void RenderToolbarButton(IRenderContext renderContext, Rectangle rectangle)
         {
-            RenderRoundedRectangle(renderContext, rectangle, 3, GetBackgroundColorAt, false, false);
-            RenderRoundedRectangle(renderContext, rectangle, 3, GetBorderColorAt, true, false);
+            RenderButtonInternal(renderContext,
+                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1), true);
         }
 
-        private void RenderPressedButtonInternal(IRenderContext renderContext, Rectangle rectangle)
+        public void RenderPressedToolbarButton(IRenderContext renderContext, Rectangle rectangle)
         {
-            RenderRoundedRectangle(renderContext, rectangle, 3, GetPressedBackgroundColorAt, false, false);
-            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X + 2, rectangle.Y + 3, rectangle.Width - 4, rectangle.Height - 4), 2f, GetPressedDropShadowAt2, true, false);
-            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X + 1, rectangle.Y + 2, rectangle.Width - 2, rectangle.Height - 2), 2.5f, GetPressedDropShadowAt, true, false);
-            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X, rectangle.Y + 1, rectangle.Width, rectangle.Height), 3f, GetPressedDropShadowAtTopCorners, true, false);
-            RenderRoundedRectangle(renderContext, rectangle, 3, GetPressedBorderColorAt, true, false);
+            RenderPressedButtonInternal(renderContext,
+                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1), true);
         }
 
-        private void RenderToggledButtonInternal(IRenderContext renderContext, Rectangle rectangle)
+        public void RenderToggledToolbarButton(IRenderContext renderContext, Rectangle rectangle)
         {
-            RenderRoundedRectangle(renderContext, rectangle, 3, GetToggledBackgroundColorAt, false, false);
-            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X + 2, rectangle.Y + 3, rectangle.Width - 4, rectangle.Height - 4), 2f, GetPressedDropShadowAt2, true, false);
-            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X + 1, rectangle.Y + 2, rectangle.Width - 2, rectangle.Height - 2), 2.5f, GetPressedDropShadowAt, true, false);
-            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X, rectangle.Y + 1, rectangle.Width, rectangle.Height), 3f, GetPressedDropShadowAtTopCorners, true, false);
-            RenderRoundedRectangle(renderContext, rectangle, 3, GetPressedBorderColorAt, true, false);
+            RenderToggledButtonInternal(renderContext,
+                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1), true);
         }
 
-        private void RenderDisabledButtonInternal(IRenderContext renderContext, Rectangle rectangle)
+        public void RenderDisabledToolbarButton(IRenderContext renderContext, Rectangle rectangle)
         {
-            RenderRoundedRectangle(renderContext, rectangle, 3, GetDisabledBackgroundColorAt, false, false);
-            RenderRoundedRectangle(renderContext, rectangle, 3, GetDisabledBorderColorAt, true, false);
+            RenderDisabledButtonInternal(renderContext,
+                new Rectangle(rectangle.X, rectangle.Y, rectangle.Width - 1, rectangle.Height - 1), true);
+        }
+
+        private void RenderButtonInternal(IRenderContext renderContext, Rectangle rectangle, bool isToolbar)
+        {
+            RenderRoundedRectangle(renderContext, rectangle, isToolbar ? 0 : 3, GetBackgroundColorAt, false, false);
+            if (!isToolbar)
+            {
+                RenderRoundedRectangle(renderContext, rectangle, isToolbar ? 0 : 3, GetBorderColorAt, true, false);
+            }
+        }
+
+        private void RenderPressedButtonInternal(IRenderContext renderContext, Rectangle rectangle, bool isToolbar)
+        {
+            RenderRoundedRectangle(renderContext, rectangle, isToolbar ? 0 : 3, GetPressedBackgroundColorAt, false, false);
+            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X + 2, rectangle.Y + 3, rectangle.Width - 4, rectangle.Height - 4), isToolbar ? 0 : 2f, GetPressedDropShadowAt2, true, false);
+            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X + 1, rectangle.Y + 2, rectangle.Width - 2, rectangle.Height - 2), isToolbar ? 0 : 2.5f, GetPressedDropShadowAt, true, false);
+            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X, rectangle.Y + 1, rectangle.Width, rectangle.Height), isToolbar ? 0 : 3f, GetPressedDropShadowAtTopCorners, true, false);
+            if (!isToolbar)
+            {
+                RenderRoundedRectangle(renderContext, rectangle, isToolbar ? 0 : 3, GetPressedBorderColorAt, true, false);
+            }
+        }
+
+        private void RenderToggledButtonInternal(IRenderContext renderContext, Rectangle rectangle, bool isToolbar)
+        {
+            RenderRoundedRectangle(renderContext, rectangle, isToolbar ? 0 : 3, GetToggledBackgroundColorAt, false, false);
+            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X + 2, rectangle.Y + 3, rectangle.Width - 4, rectangle.Height - 4), isToolbar ? 0 : 2f, GetPressedDropShadowAt2, true, false);
+            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X + 1, rectangle.Y + 2, rectangle.Width - 2, rectangle.Height - 2), isToolbar ? 0 : 2.5f, GetPressedDropShadowAt, true, false);
+            RenderRoundedRectangle(renderContext, new Rectangle(rectangle.X, rectangle.Y + 1, rectangle.Width, rectangle.Height), isToolbar ? 0 : 3f, GetPressedDropShadowAtTopCorners, true, false);
+            if (!isToolbar)
+            {
+                RenderRoundedRectangle(renderContext, rectangle, isToolbar ? 0 : 3, GetPressedBorderColorAt, true, false);
+            }
+        }
+
+        private void RenderDisabledButtonInternal(IRenderContext renderContext, Rectangle rectangle, bool isToolbar)
+        {
+            RenderRoundedRectangle(renderContext, rectangle, isToolbar ? 0 : 3, GetDisabledBackgroundColorAt, false, false);
+            if (!isToolbar)
+            {
+                RenderRoundedRectangle(renderContext, rectangle, isToolbar ? 0 : 3, GetDisabledBorderColorAt, true, false);
+            }
         }
 
         public void RenderTab(IRenderContext renderContext, Rectangle rectangle)

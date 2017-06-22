@@ -4,6 +4,7 @@ using Protogame.Editor.ProjectManagement;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System;
 
 namespace Protogame.Editor.EditorWindow
 {
@@ -33,14 +34,29 @@ namespace Protogame.Editor.EditorWindow
             scrollableProjectContainer.SetChild(_projectListView);
             scrollableContentContainer.SetChild(_projectContentView);
 
+            var toolbarProjectContainer = new ToolbarContainer();
+            toolbarProjectContainer.SetChild(scrollableProjectContainer);
+
+            toolbarProjectContainer.Buttons.Add(new ToolbarButton("New", OnNewProject));
+            toolbarProjectContainer.Buttons.Add(new ToolbarButton("Edit", OnEditProject));
+
+            var toolbarContentContainer = new ToolbarContainer();
+            toolbarContentContainer.SetChild(scrollableContentContainer);
+
             var horizontalContainer = new HorizontalSpacedContainer();
-            horizontalContainer.AddChild(scrollableProjectContainer, "350");
-            horizontalContainer.AddChild(scrollableContentContainer, "*");
+            horizontalContainer.AddChild(toolbarProjectContainer, "350");
+            horizontalContainer.AddChild(toolbarContentContainer, "*");
 
-            var toolbarContainer = new ToolbarContainer();
-            toolbarContainer.SetChild(horizontalContainer);
+            SetChild(horizontalContainer);
+        }
 
-            SetChild(toolbarContainer);
+        private void OnEditProject(IGameContext obj)
+        {
+        }
+
+        private void OnNewProject(IGameContext obj)
+        {
+            
         }
 
         public override bool Visible
