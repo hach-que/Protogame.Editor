@@ -47,17 +47,7 @@ namespace Protogame.Editor
             pipeline.AddFixedRenderPass(ProfilerRenderPass);
             */
         }
-
-        public override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
-
-            if (_loadedGame != null)
-            {
-                _loadedGame.Render(GameContext, RenderContext);
-            }
-        }
-
+        
         public override void Update(GameTime gameTime)
         {
             if (_loadedGame != null)

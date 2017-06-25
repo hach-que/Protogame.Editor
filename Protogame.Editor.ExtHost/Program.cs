@@ -53,6 +53,7 @@ namespace Protogame.Editor.ExtHost
             var argsList = new Queue<string>(args);
             string editorUrl = null;
             string assemblyFile = null;
+            long? clientId = null;
             while (argsList.Count > 0)
             {
                 var arg = argsList.Dequeue();
@@ -84,6 +85,9 @@ namespace Protogame.Editor.ExtHost
                     case "--assembly-path":
                         assemblyFile = argsList.Dequeue();
                         break;
+                    case "--client-id":
+                        clientId = long.Parse(argsList.Dequeue());
+                        break;
                 }
             }
             
@@ -92,9 +96,9 @@ namespace Protogame.Editor.ExtHost
                 Console.Error.WriteLine(e.ExceptionObject);
             };
 
-            if (editorUrl == null || assemblyFile == null)
+            if (editorUrl == null || assemblyFile == null || clientId == null)
             {
-                System.Console.Error.WriteLine("Editor URL or assembly file not specified");
+                System.Console.Error.WriteLine("Editor URL, assembly file or client ID not specified");
                 return 1;
             }
             
@@ -122,11 +126,7 @@ namespace Protogame.Editor.ExtHost
             System.Console.Error.WriteLine("Configuring kernel...");
 
             var kernel = new StandardKernel();
-            kernel.Bind<IEditorClientProvider>().To<EditorClientProvider>().InSingletonScope();
-            kernel.Bind<IProjectManager>().To<ProjectManager>().InSingletonScope();
-            kernel.Bind<IWantsUpdateSignal>().To<ProjectManagerUpdateSignal>().InSingletonScope();
-            kernel.Bind<IWantsUpdateSignal>().To<PresenceCheckerUpdateSignal>().InSingletonScope();
-            kernel.Bind<Editor.Api.Version1.Core.IConsoleHandle>().To<ConsoleHandle>().InSingletonScope();
+            CommonHostBinder.RegisterBindings(kernel, clientId.Value);
             foreach (var ext in editorExtensions)
             {
                 ext.RegisterServices(kernel);
@@ -145,7 +145,8 @@ namespace Protogame.Editor.ExtHost
                 Services =
                 {
                     MenuEntries.BindService(kernel.Get<MenuEntriesImpl>()),
-                    ToolbarEntries.BindService(kernel.Get<ToolbarEntriesImpl>())
+                    ToolbarEntries.BindService(kernel.Get<ToolbarEntriesImpl>()),
+                    Grpc.Editor.SignalBus.BindService(kernel.Get<SignalBusImpl>()),
                 },
                 Ports = { new ServerPort("localhost", 0, ServerCredentials.Insecure) }
             };
@@ -157,17 +158,15 @@ namespace Protogame.Editor.ExtHost
             Console.WriteLine(serverUrl);
             Console.Error.WriteLine(serverUrl);
 
-            var wantsUpdateSignal = kernel.GetAll<IWantsUpdateSignal>();
+            var signalBus = kernel.Get<ISignalBus>();
+            signalBus.ConfigureReceivers();
+
+            // Call EditorStart
+            signalBus.SendHostSignal(WellKnownSignalName.EditorStart, SignalData.Empty);
 
             while (true)
             {
-                if (wantsUpdateSignal != null)
-                {
-                    foreach (var s in wantsUpdateSignal)
-                    {
-                        s.Update();
-                    }
-                }
+                signalBus.SendHostSignal(WellKnownSignalName.EditorUpdate, SignalData.Empty);
 
                 Thread.Sleep(16);
             }

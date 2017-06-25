@@ -15,7 +15,7 @@ namespace Protogame.Editor.Ext.CodeManager
         {
             kernel.Bind<IMenuProvider>().To<CodeManagerMenuProvider>().InSingletonScope();
             kernel.Bind<IToolbarProvider>().To<CodeManagerToolbarProvider>().InSingletonScope();
-            kernel.Bind<IWantsUpdateSignal>().To<CodeManagerUpdateSignal>().InSingletonScope();
+            kernel.Bind<ISignalReceiver>().To<CodeManagerSignalReciever>().InSingletonScope();
             kernel.Bind<ICodeManagerService>().To<CodeManagerService>().InSingletonScope();
             kernel.Bind<IApiReferenceService>().To<ApiReferenceService>().InSingletonScope();
         }

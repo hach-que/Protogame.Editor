@@ -1,4 +1,5 @@
-﻿using Protogame.Editor.EditorWindow;
+﻿using Protogame.Editor.Api.Version1.Workspace;
+using Protogame.Editor.Window;
 
 namespace Protogame.Editor.Menu
 {

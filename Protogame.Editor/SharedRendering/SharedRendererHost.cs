@@ -50,7 +50,7 @@ namespace Protogame.Editor.SharedRendering
             _mustDestroyRenderTargets = true;
         }
 
-        public void UpdateTextures(IGameContext gameContext, IRenderContext renderContext)
+        public void UpdateTextures(IRenderContext renderContext)
         {
             if (_mustDestroyRenderTargets)
             {

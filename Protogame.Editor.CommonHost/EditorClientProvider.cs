@@ -7,14 +7,20 @@ namespace Protogame.Editor.CommonHost
     public class EditorClientProvider : IEditorClientProvider
     {
         private Channel _channel;
-        private Dictionary<Type, object> _clients = new Dictionary<Type, object>();
+        private Dictionary<Type, ClientBase> _clients = new Dictionary<Type, ClientBase>();
+        private readonly IClientIdentifier _clientIdentifier;
+
+        public EditorClientProvider(IClientIdentifier clientIdentifier)
+        {
+            _clientIdentifier = clientIdentifier;
+        }
 
         public void CreateChannel(string url)
         {
             _channel = new Channel(url, ChannelCredentials.Insecure);
         }
 
-        public T GetClient<T>()
+        public T GetClient<T>() where T : ClientBase
         {
             if (_channel == null)
             {
@@ -28,7 +34,9 @@ namespace Protogame.Editor.CommonHost
                 return (T)_clients[t];
             }
 
-            _clients[t] = t.GetConstructor(new[] { typeof(Channel) }).Invoke(new object[] { _channel });
+            var callInvoker = new ClientIdentifiedCallInvoker(_channel, _clientIdentifier.ClientId);
+
+            _clients[t] = (ClientBase)t.GetConstructor(new[] { typeof(CallInvoker) }).Invoke(new object[] { callInvoker });
             return (T)_clients[t];
         }
     }

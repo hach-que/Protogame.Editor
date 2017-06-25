@@ -28,10 +28,6 @@
     <DebugSymbolsOnRelease>full</DebugSymbolsOnRelease>
   </Properties>
   <Files>
-    <Compile Include="DefaultLoadedGame.cs" />
-    <Compile Include="EditorGameWindow.cs" />
-    <Compile Include="EditorGraphicsDeviceService.cs" />
-    <Compile Include="EditorHostGame.cs" />
     <Compile Include="ExtensionEngineHook.cs" />
     <Compile Include="GameHostServerImpl.cs" />
     <Compile Include="HostedBackBufferDimensions.cs" />
@@ -40,10 +36,6 @@
     <Compile Include="HostedGameRunner.cs" />
     <Compile Include="IGameRunner.cs" />
     <Compile Include="LoadedGameState.cs" />
-    <Compile Include="Other\DomainGate.cs" />
-    <Compile Include="Other\HostGameProxy.cs" />
-    <Compile Include="Other\ObjectAddress.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="RenderTargetBufferConfiguration.cs" />
   </Files>
 </Project>

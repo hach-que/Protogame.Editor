@@ -1,7 +1,8 @@
 ﻿using System;
 using Protogame.Editor.LoadedGame;
 using Protogame.Editor.ProjectManagement;
-using Protogame.Editor.EditorWindow;
+using Protogame.Editor.Window;
+using Protogame.Editor.Api.Version1.Workspace;
 
 namespace Protogame.Editor.Toolbar
 {
@@ -35,13 +36,13 @@ namespace Protogame.Editor.Toolbar
         private void LaunchDebug(GenericToolbarEntry toolbarEntry)
         {
             _loadedGame.RunInDebug();
-            _windowManagement.ActivateWhere(x => x is GameEditorWindow);
+            _windowManagement.ActivateGameWindow();
         }
 
         private void LaunchDebugGpu(GenericToolbarEntry toolbarEntry)
         {
             _loadedGame.RunInDebugGpu();
-            _windowManagement.ActivateWhere(x => x is GameEditorWindow);
+            _windowManagement.ActivateGameWindow();
         }
     }
 }

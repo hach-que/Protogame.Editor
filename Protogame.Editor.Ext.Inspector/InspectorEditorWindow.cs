@@ -1,13 +1,12 @@
-﻿using Protogame.Editor.Api.Version1.EditorWindow;
+﻿using Protogame.Editor.Api.Version1.Window;
 using System;
 
 namespace Protogame.Editor.Ext.Inspector
 {
-    public class InspectorEditorWindow : MarshalByRefObject, IEditorWindow
+    public class InspectorEditorWindow : EditorWindow
     {
-        public void Update(IEditorWindowApi api)
-        {
-            //api.DeclareFieldValue();
-        }
+        public override string Title => "Inspector";
+
+        public override string IconName => "texture.IconInspector";
     }
 }

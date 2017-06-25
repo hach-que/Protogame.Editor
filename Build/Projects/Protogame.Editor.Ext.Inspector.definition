@@ -25,8 +25,8 @@
     <Compile Include="InspectorDebugLayer.cs" />
     <Compile Include="InspectorEditorExtension.cs" />
     <Compile Include="InspectorEditorWindow.cs" />
-    <Compile Include="InspectorEditorWindowProvider.cs" />
     <Compile Include="InspectorGameHostExtension.cs" />
     <Compile Include="InspectorRenderPass.cs" />
+    <Compile Include="InspectorSignalReceiver.cs" />
   </Files>
 </Project>

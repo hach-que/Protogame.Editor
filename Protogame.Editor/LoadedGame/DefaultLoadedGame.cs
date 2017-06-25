@@ -16,6 +16,9 @@ using Protogame.Editor.Grpc.GameHost;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using Google.Protobuf;
+using System.Threading.Tasks;
+using static Protogame.Editor.Grpc.Editor.SignalBus;
+using Protogame.Editor.Window;
 
 namespace Protogame.Editor.LoadedGame
 {
@@ -24,9 +27,9 @@ namespace Protogame.Editor.LoadedGame
         private readonly IProjectManager _projectManager;
         private readonly IGrpcServer _grpcServer;
         private readonly IConsoleHandle _consoleHandle;
-        private readonly IRenderTargetBackBufferUtilities _renderTargetBackBufferUtilities;
-        private readonly SharedRendererHost _sharedRendererHost;
+        private readonly IThumbnailSampler _thumbnailSampler;
         private readonly BinaryFormatter _formatter;
+        private const long _clientId = 0x100;
 
         private FileInfo _executingFile;
         private bool _shouldDebug;
@@ -34,32 +37,55 @@ namespace Protogame.Editor.LoadedGame
         private Process _process;
         private Channel _channel;
         private GameHostServerClient _gameHostClient;
-        private string _baseDirectory;
         private LoadedGameState? _loadedGameState;
         private DateTime? _playingStartTime;
         private bool _runAfterRestart;
         private bool _shouldDebugGpu;
 
-        private Point _offset;
+        private Point? _renderTargetSize;
         private bool _requiresDelaySync;
+
+        private string _syncMmapName;
+        private long[] _texturePointers;
 
         public DefaultLoadedGame(
             IConsoleHandle consoleHandle,
             IProjectManager projectManager,
             IGrpcServer grpcServer,
-            IRenderTargetBackBufferUtilities renderTargetBackBufferUtilities,
-            ISharedRendererHostFactory sharedRendererHostFactory)
+            IThumbnailSampler thumbnailSampler)
         {
             _consoleHandle = consoleHandle;
             _projectManager = projectManager;
             _grpcServer = grpcServer;
-            _sharedRendererHost = sharedRendererHostFactory.CreateSharedRendererHost();
-            _sharedRendererHost.TexturesRecreated += OnTexturesRecreated;
+            _thumbnailSampler = thumbnailSampler;
             _formatter = new BinaryFormatter();
         }
 
-        private void OnTexturesRecreated(object sender, EventArgs e)
+        public string Title => "Game";
+
+        public string IconName => "texture.IconDirectionalPad";
+
+        public bool MustDestroyTextures { get; set; }
+
+        public bool Visible
         {
+            get
+            {
+                return _projectManager.Project != null;
+            }
+        }
+
+        public Point? GetRenderTargetSize()
+        {
+            return _renderTargetSize;
+        }
+
+        public void SendTextures(string syncMmapName, long[] texturePointers, int textureWidth, int textureHeight)
+        {
+            _syncMmapName = syncMmapName;
+            _texturePointers = texturePointers;
+            _renderTargetSize = new Point(textureWidth, textureHeight);
+            
             if (_gameHostClient != null)
             {
                 SendTexturesToGameHost();
@@ -75,8 +101,8 @@ namespace Protogame.Editor.LoadedGame
             _consoleHandle.LogInfo("Sending textures and memory mapped filename to game host from editor...");
 
             var req = new SetRenderTargetsRequest();
-            req.SharedPointer.AddRange(_sharedRendererHost.WritableTextureIntPtrs.Select(x => x.ToInt64()));
-            req.SyncMmappedFileName = _sharedRendererHost.SynchronisationMemoryMappedFileName;
+            req.SharedPointer.AddRange(_texturePointers);
+            req.SyncMmappedFileName = _syncMmapName;
             try
             {
                 _gameHostClient.SetRenderTargets(req);
@@ -85,11 +111,6 @@ namespace Protogame.Editor.LoadedGame
             {
                 _requiresDelaySync = true;
             }
-        }
-
-        public void SetPositionOffset(Point offset)
-        {
-            _offset = offset;
         }
 
         public void QueueEvent(Event @event)
@@ -116,12 +137,7 @@ namespace Protogame.Editor.LoadedGame
                 }
             }
         }
-
-        public void Render(IGameContext gameContext, IRenderContext renderContext)
-        {
-            _sharedRendererHost.UpdateTextures(gameContext, renderContext);
-        }
-
+        
         public void Update(IGameContext gameContext, IUpdateContext updateContext)
         {
             if (_requiresDelaySync && _gameHostClient != null)
@@ -156,7 +172,8 @@ namespace Protogame.Editor.LoadedGame
                         (_shouldDebug ? "--debug " : "") +
                         "--track " + Process.GetCurrentProcess().Id +
                         " --editor-url " + _grpcServer.GetServerUrl() +
-                        " --assembly-path \"" + _projectManager.Project.DefaultGameBinPath.FullName + "\"",
+                        " --assembly-path \"" + _projectManager.Project.DefaultGameBinPath.FullName + "\"" +
+                        " --client-id " + _clientId,
                     WorkingDirectory = _projectManager.Project.DefaultGameBinPath.DirectoryName,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
@@ -164,7 +181,6 @@ namespace Protogame.Editor.LoadedGame
                     CreateNoWindow = true
                 };
                 // Update last write time.
-                _baseDirectory = _projectManager.Project.DefaultGameBinPath.DirectoryName;
                 _executingFile = new FileInfo(_projectManager.Project.DefaultGameBinPath.FullName);
                 _shouldDebug = false;
                 _shouldRestart = false;
@@ -183,7 +199,7 @@ namespace Protogame.Editor.LoadedGame
                     _loadedGameState = null;
                     // The process may have exited mid-draw, which could keep a texture locked.  Destroy
                     // the textures and recreate them to ensure they're not locked.
-                    _sharedRendererHost.DestroyTextures();
+                    MustDestroyTextures = true;
                 }
                 _process = Process.Start(processStartInfo);
                 _process.Exited += (sender, e) =>
@@ -195,7 +211,7 @@ namespace Protogame.Editor.LoadedGame
                     _loadedGameState = null;
                     // The process may have exited mid-draw, which could keep a texture locked.  Destroy
                     // the textures and recreate them to ensure they're not locked.
-                    _sharedRendererHost.DestroyTextures();
+                    MustDestroyTextures = true;
                 };
                 _process.OutputDataReceived += (sender, e) =>
                 {
@@ -240,32 +256,7 @@ namespace Protogame.Editor.LoadedGame
                 _process.BeginOutputReadLine();
             }
         }
-
-        public string GetBaseDirectory()
-        {
-            return _baseDirectory;
-        }
-
-        public void IncrementReadRenderTargetIfPossible()
-        {
-            _sharedRendererHost.IncrementReadableTextureIfPossible();
-        }
-
-        public RenderTarget2D GetCurrentGameRenderTarget()
-        {
-            return _sharedRendererHost.ReadableTexture;
-        }
-
-        public void SetRenderTargetSize(Point size)
-        {
-            _sharedRendererHost.Size = size;
-        }
-
-        public Point? GetRenderTargetSize()
-        {
-            return _sharedRendererHost.Size;
-        }
-
+        
         public LoadedGameState GetPlaybackState()
         {
             return _loadedGameState ?? LoadedGameState.Loading;
@@ -308,16 +299,13 @@ namespace Protogame.Editor.LoadedGame
                 dtDateTime = dtDateTime.AddSeconds(changedRequest.StartTime.UnixTimestamp);
                 _playingStartTime = dtDateTime;
             }
+
+            _thumbnailSampler.SetPlayingTime(_playingStartTime);
         }
 
         public void RequestRestart()
         {
             _shouldRestart = true;
-        }
-
-        public DateTime? GetPlayingStartTime()
-        {
-            return _playingStartTime;
         }
 
         public void RunInDebug()
@@ -332,6 +320,21 @@ namespace Protogame.Editor.LoadedGame
             _shouldDebugGpu = true;
             _shouldRestart = true;
             _runAfterRestart = true;
+        }
+
+        public async Task SendSignal(ReceiveSignalRequest req)
+        {
+            if (_channel != null)
+            {
+                var signalBusClient = new SignalBusClient(_channel);
+                await signalBusClient.ReceiveAsync(req);
+            }
+        }
+
+        public void CheckLiveness(HostedEditorWindow hostedWindow)
+        {
+            // Called by the window host so that extension windows will be destroyed
+            // when the extension is unloaded; we have no use for it here.
         }
     }
 }

@@ -25,14 +25,25 @@
     <DebugSymbolsOnRelease>full</DebugSymbolsOnRelease>
   </Properties>
   <Files>
+    <Compile Include="ClientIdentifiedCallInvoker.cs" />
+    <Compile Include="CommonHostBinder.cs" />
     <Compile Include="ConsoleHandle.cs" />
+    <Compile Include="EditorClientIdentifier.cs" />
     <Compile Include="EditorClientProvider.cs" />
+    <Compile Include="EditorGameWindow.cs" />
+    <Compile Include="EditorGraphicsDeviceService.cs" />
+    <Compile Include="EditorHostGame.cs" />
+    <Compile Include="EditorWindowManagement.cs" />
     <Compile Include="GrpcLogger.cs" />
+    <Compile Include="IClientIdentifier.cs" />
     <Compile Include="IEditorClientProvider.cs" />
-    <Compile Include="PresenceCheckerUpdateSignal.cs" />
+    <Compile Include="ISignalBus.cs" />
+    <Compile Include="PresenceCheckerSignalReceiver.cs" />
     <Compile Include="ProjectManager.cs" />
-    <Compile Include="ProjectManagerUpdateSignal.cs" />
+    <Compile Include="ProjectManagerSignalReceiver.cs" />
     <Compile Include="SharedRendering\ISharedRendererClientFactory.cs" />
     <Compile Include="SharedRendering\SharedRendererClient.cs" />
+    <Compile Include="SignalBus.cs" />
+    <Compile Include="SignalBusImpl.cs" />
   </Files>
 </Project>

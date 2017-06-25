@@ -4,6 +4,7 @@ using System.Linq;
 using Srv = global::Grpc.Core.Server;
 using Grpc.Core.Logging;
 using System;
+using Protoinject;
 
 namespace Protogame.Editor.Server
 {
@@ -11,24 +12,23 @@ namespace Protogame.Editor.Server
     {
         private Srv _server;
         private string _serverUrl;
-        private readonly ConsoleImpl _consoleImpl;
         private readonly IConsoleHandle _consoleHandle;
-        private readonly ProjectManagerImpl _projectManagerImpl;
-        private readonly PresenceImpl _presenceImpl;
-        private readonly GameHosterImpl _gameHosterImpl;
+        private readonly Lazy<ConsoleImpl> _consoleImpl;
+        private readonly Lazy<ProjectManagerImpl> _projectManagerImpl;
+        private readonly Lazy<PresenceImpl> _presenceImpl;
+        private readonly Lazy<GameHosterImpl> _gameHosterImpl;
+        private readonly Lazy<WindowManagementImpl> _windowManagementImpl;
 
         public GrpcServer(
             IConsoleHandle consoleHandle,
-            ConsoleImpl consoleImpl,
-            ProjectManagerImpl projectManagerImpl,
-            PresenceImpl presenceImpl,
-            GameHosterImpl gameHosterImpl)
+            IKernel kernel)
         {
             _consoleHandle = consoleHandle;
-            _consoleImpl = consoleImpl;
-            _projectManagerImpl = projectManagerImpl;
-            _presenceImpl = presenceImpl;
-            _gameHosterImpl = gameHosterImpl;
+            _consoleImpl = new Lazy<ConsoleImpl>(() => kernel.Get<ConsoleImpl>());
+            _projectManagerImpl = new Lazy<ProjectManagerImpl>(() => kernel.Get<ProjectManagerImpl>());
+            _presenceImpl = new Lazy<PresenceImpl>(() => kernel.Get<PresenceImpl>());
+            _gameHosterImpl = new Lazy<GameHosterImpl>(() => kernel.Get<GameHosterImpl>());
+            _windowManagementImpl = new Lazy<WindowManagementImpl>(() => kernel.Get<WindowManagementImpl>());
         }
 
         public string GetServerUrl()
@@ -51,10 +51,11 @@ namespace Protogame.Editor.Server
             {
                 Services =
                 {
-                    Grpc.Editor.Console.BindService(_consoleImpl),
-                    Grpc.Editor.ProjectManager.BindService(_projectManagerImpl),
-                    Grpc.Editor.Presence.BindService(_presenceImpl),
-                    Grpc.Editor.GameHoster.BindService(_gameHosterImpl),
+                    Grpc.Editor.Console.BindService(_consoleImpl.Value),
+                    Grpc.Editor.ProjectManager.BindService(_projectManagerImpl.Value),
+                    Grpc.Editor.Presence.BindService(_presenceImpl.Value),
+                    Grpc.Editor.GameHoster.BindService(_gameHosterImpl.Value),
+                    Grpc.Editor.WindowManagement.BindService(_windowManagementImpl.Value),
                 },
                 Ports = { new ServerPort("localhost", 0, ServerCredentials.Insecure) }
             };

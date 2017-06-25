@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework;
 using System;
 using Protogame.Editor.Layout;
+using Protogame.Editor.Api.Version1.Layout;
 
 namespace Protogame.Editor.Nui
 {
@@ -27,21 +28,27 @@ namespace Protogame.Editor.Nui
                     _nuiRenderer.RenderTab(renderContext, tabForRendering.Layout);
                 }
 
-                _renderUtilities.RenderTexture(
-                    renderContext,
-                    new Vector2(tabForRendering.Layout.X + 3, tabForRendering.Layout.Y + 3),
-                    tabForRendering.Icon,
-                    new Vector2(tabForRendering.Layout.Height - 6, tabForRendering.Layout.Height - 6));
+                if (tabForRendering.Icon != null)
+                {
+                    _renderUtilities.RenderTexture(
+                        renderContext,
+                        new Vector2(tabForRendering.Layout.X + 3, tabForRendering.Layout.Y + 3),
+                        tabForRendering.Icon,
+                        new Vector2(tabForRendering.Layout.Height - 6, tabForRendering.Layout.Height - 6));
+                }
 
-                _renderUtilities.RenderText(
-                    renderContext,
-                    new Vector2(tabForRendering.Layout.X + 16, tabForRendering.Layout.Bottom - 1),
-                    tabForRendering.Title,
-                    _fontAsset,
-                    HorizontalAlignment.Left,
-                    VerticalAlignment.Bottom,
-                    textColor: Color.Black,
-                    renderShadow: false);
+                if (tabForRendering.Title != null)
+                {
+                    _renderUtilities.RenderText(
+                        renderContext,
+                        new Vector2(tabForRendering.Layout.X + 16, tabForRendering.Layout.Bottom - 1),
+                        tabForRendering.Title,
+                        _fontAsset,
+                        HorizontalAlignment.Left,
+                        VerticalAlignment.Bottom,
+                        textColor: Color.Black,
+                        renderShadow: false);
+                }
             }
         }
 

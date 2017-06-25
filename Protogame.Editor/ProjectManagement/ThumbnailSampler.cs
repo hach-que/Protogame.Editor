@@ -1,31 +1,36 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using Protogame.Editor.LoadedGame;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Protogame.Editor.ProjectManagement
 {
     public class ThumbnailSampler : IThumbnailSampler
     {
         private readonly IProjectManager _projectManager;
-        private readonly ILoadedGame _loadedGame;
         private readonly IConsoleHandle _consoleHandle;
         private readonly IGraphicsBlit _graphicsBlit;
 
+        private RenderTarget2D _renderTarget;
+        private DateTime? _playingTime;
+
         public ThumbnailSampler(
             IProjectManager projectManager,
-            ILoadedGame loadedGame,
             IConsoleHandle consoleHandle,
             IGraphicsBlit graphicsBlit)
         {
             _projectManager = projectManager;
-            _loadedGame = loadedGame;
             _consoleHandle = consoleHandle;
             _graphicsBlit = graphicsBlit;
+        }
+
+        public void SetRenderTarget(RenderTarget2D renderTarget)
+        {
+            _renderTarget = renderTarget;
+        }
+
+        public void SetPlayingTime(DateTime? playingTime)
+        {
+            _playingTime = playingTime;
         }
 
         public void WriteThumbnailIfNecessary(IGameContext gameContext, IRenderContext renderContext)
@@ -41,7 +46,7 @@ namespace Protogame.Editor.ProjectManagement
 
             var thumbnailFile = new FileInfo(Path.Combine(editorPath, "Thumbnail.png"));
 
-            var startTime = _loadedGame.GetPlayingStartTime();
+            var startTime = _playingTime;
 
             if (startTime != null && (DateTime.UtcNow - startTime.Value).TotalMinutes >= 1)
             {
@@ -49,7 +54,7 @@ namespace Protogame.Editor.ProjectManagement
                 {
                     _consoleHandle.LogInfo("Sampling current game screen as thumbnail for project...");
 
-                    var srt = _loadedGame.GetCurrentGameRenderTarget();
+                    var srt = _renderTarget;
                     var rt = new RenderTarget2D(renderContext.GraphicsDevice, 128, 128, false, SurfaceFormat.Color, DepthFormat.None);
                     _graphicsBlit.Blit(renderContext, srt, rt);
 
@@ -70,10 +75,5 @@ namespace Protogame.Editor.ProjectManagement
                 }
             }
         }
-    }
-
-    public interface IThumbnailSampler
-    {
-        void WriteThumbnailIfNecessary(IGameContext gameContext, IRenderContext renderContext);
     }
 }

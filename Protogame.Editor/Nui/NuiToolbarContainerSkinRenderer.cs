@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Protogame.Editor.Api.Version1.Layout;
 using Protogame.Editor.Layout;
 using System;
 

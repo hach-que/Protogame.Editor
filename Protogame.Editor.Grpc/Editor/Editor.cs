@@ -44,25 +44,42 @@ namespace Protogame.Editor.Grpc.Editor {
             "ZURpcmVjdG9yeRgBIAEoCSJbChtQbGF5YmFja1N0YXRlQ2hhbmdlZFJlcXVl",
             "c3QSHQoFc3RhdGUYASABKA4yDi5QbGF5YmFja1N0YXRlEh0KCXN0YXJ0VGlt",
             "ZRgCIAEoCzIKLlRpbWVzdGFtcCIeChxQbGF5YmFja1N0YXRlQ2hhbmdlZFJl",
-            "c3BvbnNlIiIKCVRpbWVzdGFtcBIVCg11bml4VGltZXN0YW1wGAEgASgEKkEK",
-            "DVBsYXliYWNrU3RhdGUSCwoHTG9hZGluZxAAEgoKBkxvYWRlZBABEgsKB1Bs",
-            "YXlpbmcQAhIKCgZQYXVzZWQQAzJCCghQcmVzZW5jZRI2CgVDaGVjaxIVLkNo",
-            "ZWNrUHJlc2VuY2VSZXF1ZXN0GhYuQ2hlY2tQcmVzZW5jZVJlc3BvbnNlMqMB",
-            "CgdDb25zb2xlEiUKCExvZ0RlYnVnEgsuTG9nUmVxdWVzdBoMLkxvZ1Jlc3Bv",
-            "bnNlEiQKB0xvZ0luZm8SCy5Mb2dSZXF1ZXN0GgwuTG9nUmVzcG9uc2USJAoH",
-            "TG9nV2FybhILLkxvZ1JlcXVlc3QaDC5Mb2dSZXNwb25zZRIlCghMb2dFcnJv",
-            "chILLkxvZ1JlcXVlc3QaDC5Mb2dSZXNwb25zZTKiAQoOUHJvamVjdE1hbmFn",
-            "ZXISNQoKR2V0UHJvamVjdBISLkdldFByb2plY3RSZXF1ZXN0GhMuR2V0UHJv",
-            "amVjdFJlc3BvbnNlElkKFkdldFNjYW5uZWRDb250ZW50UGF0aHMSHi5HZXRT",
-            "Y2FubmVkQ29udGVudFBhdGhzUmVxdWVzdBofLkdldFNjYW5uZWRDb250ZW50",
-            "UGF0aHNSZXNwb25zZTKIAgoKR2FtZUhvc3RlchJcChdHZXRCYWNrQnVmZmVy",
-            "RGltZW5zaW9ucxIfLkdldEJhY2tCdWZmZXJEaW1lbnNpb25zUmVxdWVzdBog",
-            "LkdldEJhY2tCdWZmZXJEaW1lbnNpb25zUmVzcG9uc2USRwoQR2V0QmFzZURp",
-            "cmVjdG9yeRIYLkdldEJhc2VEaXJlY3RvcnlSZXF1ZXN0GhkuR2V0QmFzZURp",
-            "cmVjdG9yeVJlc3BvbnNlElMKFFBsYXliYWNrU3RhdGVDaGFuZ2VkEhwuUGxh",
-            "eWJhY2tTdGF0ZUNoYW5nZWRSZXF1ZXN0Gh0uUGxheWJhY2tTdGF0ZUNoYW5n",
-            "ZWRSZXNwb25zZUIfqgIcUHJvdG9nYW1lLkVkaXRvci5HcnBjLkVkaXRvcmIG",
-            "cHJvdG8z"));
+            "c3BvbnNlIiIKCVRpbWVzdGFtcBIVCg11bml4VGltZXN0YW1wGAEgASgEIjIK",
+            "FFJlY2VpdmVTaWduYWxSZXF1ZXN0EgwKBG5hbWUYASABKAkSDAoEZGF0YRgC",
+            "IAEoDCIXChVSZWNlaXZlU2lnbmFsUmVzcG9uc2UiHQoPQWN0aXZhdGVSZXF1",
+            "ZXN0EgoKAmlkGAEgASgDIhIKEEFjdGl2YXRlUmVzcG9uc2UiGwoZQWN0aXZh",
+            "dGVHYW1lV2luZG93UmVxdWVzdCIcChpBY3RpdmF0ZUdhbWVXaW5kb3dSZXNw",
+            "b25zZSI8ChVBbGxvY2F0ZVdpbmRvd1JlcXVlc3QSEQoJcGFyYW1ldGVyGAEg",
+            "ASgJEhAKCGxvY2F0aW9uGAIgASgJIjsKFkFsbG9jYXRlV2luZG93UmVzcG9u",
+            "c2USFQoNYWxyZWFkeUV4aXN0cxgBIAEoCBIKCgJpZBgCIAEoAyJJChpTZXRX",
+            "aW5kb3dQcm9wZXJ0aWVzUmVxdWVzdBIKCgJpZBgBIAEoAxINCgV0aXRsZRgC",
+            "IAEoCRIQCghpY29uTmFtZRgDIAEoCSIdChtTZXRXaW5kb3dQcm9wZXJ0aWVz",
+            "UmVzcG9uc2UqQQoNUGxheWJhY2tTdGF0ZRILCgdMb2FkaW5nEAASCgoGTG9h",
+            "ZGVkEAESCwoHUGxheWluZxACEgoKBlBhdXNlZBADMkIKCFByZXNlbmNlEjYK",
+            "BUNoZWNrEhUuQ2hlY2tQcmVzZW5jZVJlcXVlc3QaFi5DaGVja1ByZXNlbmNl",
+            "UmVzcG9uc2UyowEKB0NvbnNvbGUSJQoITG9nRGVidWcSCy5Mb2dSZXF1ZXN0",
+            "GgwuTG9nUmVzcG9uc2USJAoHTG9nSW5mbxILLkxvZ1JlcXVlc3QaDC5Mb2dS",
+            "ZXNwb25zZRIkCgdMb2dXYXJuEgsuTG9nUmVxdWVzdBoMLkxvZ1Jlc3BvbnNl",
+            "EiUKCExvZ0Vycm9yEgsuTG9nUmVxdWVzdBoMLkxvZ1Jlc3BvbnNlMqIBCg5Q",
+            "cm9qZWN0TWFuYWdlchI1CgpHZXRQcm9qZWN0EhIuR2V0UHJvamVjdFJlcXVl",
+            "c3QaEy5HZXRQcm9qZWN0UmVzcG9uc2USWQoWR2V0U2Nhbm5lZENvbnRlbnRQ",
+            "YXRocxIeLkdldFNjYW5uZWRDb250ZW50UGF0aHNSZXF1ZXN0Gh8uR2V0U2Nh",
+            "bm5lZENvbnRlbnRQYXRoc1Jlc3BvbnNlMogCCgpHYW1lSG9zdGVyElwKF0dl",
+            "dEJhY2tCdWZmZXJEaW1lbnNpb25zEh8uR2V0QmFja0J1ZmZlckRpbWVuc2lv",
+            "bnNSZXF1ZXN0GiAuR2V0QmFja0J1ZmZlckRpbWVuc2lvbnNSZXNwb25zZRJH",
+            "ChBHZXRCYXNlRGlyZWN0b3J5EhguR2V0QmFzZURpcmVjdG9yeVJlcXVlc3Qa",
+            "GS5HZXRCYXNlRGlyZWN0b3J5UmVzcG9uc2USUwoUUGxheWJhY2tTdGF0ZUNo",
+            "YW5nZWQSHC5QbGF5YmFja1N0YXRlQ2hhbmdlZFJlcXVlc3QaHS5QbGF5YmFj",
+            "a1N0YXRlQ2hhbmdlZFJlc3BvbnNlMkUKCVNpZ25hbEJ1cxI4CgdSZWNlaXZl",
+            "EhUuUmVjZWl2ZVNpZ25hbFJlcXVlc3QaFi5SZWNlaXZlU2lnbmFsUmVzcG9u",
+            "c2UypwIKEFdpbmRvd01hbmFnZW1lbnQSLwoIQWN0aXZhdGUSEC5BY3RpdmF0",
+            "ZVJlcXVlc3QaES5BY3RpdmF0ZVJlc3BvbnNlEk0KEkFjdGl2YXRlR2FtZVdp",
+            "bmRvdxIaLkFjdGl2YXRlR2FtZVdpbmRvd1JlcXVlc3QaGy5BY3RpdmF0ZUdh",
+            "bWVXaW5kb3dSZXNwb25zZRJBCg5BbGxvY2F0ZVdpbmRvdxIWLkFsbG9jYXRl",
+            "V2luZG93UmVxdWVzdBoXLkFsbG9jYXRlV2luZG93UmVzcG9uc2USUAoTU2V0",
+            "V2luZG93UHJvcGVydGllcxIbLlNldFdpbmRvd1Byb3BlcnRpZXNSZXF1ZXN0",
+            "GhwuU2V0V2luZG93UHJvcGVydGllc1Jlc3BvbnNlQh+qAhxQcm90b2dhbWUu",
+            "RWRpdG9yLkdycGMuRWRpdG9yYgZwcm90bzM="));
       descriptor = pbr::FileDescriptor.FromGeneratedCode(descriptorData,
           new pbr::FileDescriptor[] { },
           new pbr::GeneratedClrTypeInfo(new[] {typeof(global::Protogame.Editor.Grpc.Editor.PlaybackState), }, new pbr::GeneratedClrTypeInfo[] {
@@ -83,7 +100,17 @@ namespace Protogame.Editor.Grpc.Editor {
             new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.GetBaseDirectoryResponse), global::Protogame.Editor.Grpc.Editor.GetBaseDirectoryResponse.Parser, new[]{ "BaseDirectory" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.PlaybackStateChangedRequest), global::Protogame.Editor.Grpc.Editor.PlaybackStateChangedRequest.Parser, new[]{ "State", "StartTime" }, null, null, null),
             new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.PlaybackStateChangedResponse), global::Protogame.Editor.Grpc.Editor.PlaybackStateChangedResponse.Parser, null, null, null, null),
-            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.Timestamp), global::Protogame.Editor.Grpc.Editor.Timestamp.Parser, new[]{ "UnixTimestamp" }, null, null, null)
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.Timestamp), global::Protogame.Editor.Grpc.Editor.Timestamp.Parser, new[]{ "UnixTimestamp" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest), global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest.Parser, new[]{ "Name", "Data" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse), global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.ActivateRequest), global::Protogame.Editor.Grpc.Editor.ActivateRequest.Parser, new[]{ "Id" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.ActivateResponse), global::Protogame.Editor.Grpc.Editor.ActivateResponse.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest), global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse), global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse.Parser, null, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest), global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest.Parser, new[]{ "Parameter", "Location" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse), global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse.Parser, new[]{ "AlreadyExists", "Id" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest), global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest.Parser, new[]{ "Id", "Title", "IconName" }, null, null, null),
+            new pbr::GeneratedClrTypeInfo(typeof(global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse), global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse.Parser, null, null, null, null)
           }));
     }
     #endregion
@@ -2440,6 +2467,1176 @@ namespace Protogame.Editor.Grpc.Editor {
             UnixTimestamp = input.ReadUInt64();
             break;
           }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ReceiveSignalRequest : pb::IMessage<ReceiveSignalRequest> {
+    private static readonly pb::MessageParser<ReceiveSignalRequest> _parser = new pb::MessageParser<ReceiveSignalRequest>(() => new ReceiveSignalRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ReceiveSignalRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[18]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReceiveSignalRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReceiveSignalRequest(ReceiveSignalRequest other) : this() {
+      name_ = other.name_;
+      data_ = other.data_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReceiveSignalRequest Clone() {
+      return new ReceiveSignalRequest(this);
+    }
+
+    /// <summary>Field number for the "name" field.</summary>
+    public const int NameFieldNumber = 1;
+    private string name_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Name {
+      get { return name_; }
+      set {
+        name_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "data" field.</summary>
+    public const int DataFieldNumber = 2;
+    private pb::ByteString data_ = pb::ByteString.Empty;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public pb::ByteString Data {
+      get { return data_; }
+      set {
+        data_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ReceiveSignalRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ReceiveSignalRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Name != other.Name) return false;
+      if (Data != other.Data) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Name.Length != 0) hash ^= Name.GetHashCode();
+      if (Data.Length != 0) hash ^= Data.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Name.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Name);
+      }
+      if (Data.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteBytes(Data);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Name.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Name);
+      }
+      if (Data.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeBytesSize(Data);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ReceiveSignalRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Name.Length != 0) {
+        Name = other.Name;
+      }
+      if (other.Data.Length != 0) {
+        Data = other.Data;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Name = input.ReadString();
+            break;
+          }
+          case 18: {
+            Data = input.ReadBytes();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ReceiveSignalResponse : pb::IMessage<ReceiveSignalResponse> {
+    private static readonly pb::MessageParser<ReceiveSignalResponse> _parser = new pb::MessageParser<ReceiveSignalResponse>(() => new ReceiveSignalResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ReceiveSignalResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[19]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReceiveSignalResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReceiveSignalResponse(ReceiveSignalResponse other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ReceiveSignalResponse Clone() {
+      return new ReceiveSignalResponse(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ReceiveSignalResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ReceiveSignalResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ReceiveSignalResponse other) {
+      if (other == null) {
+        return;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ActivateRequest : pb::IMessage<ActivateRequest> {
+    private static readonly pb::MessageParser<ActivateRequest> _parser = new pb::MessageParser<ActivateRequest>(() => new ActivateRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ActivateRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[20]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateRequest(ActivateRequest other) : this() {
+      id_ = other.id_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateRequest Clone() {
+      return new ActivateRequest(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private long id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ActivateRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ActivateRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0L) hash ^= Id.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(Id);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ActivateRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0L) {
+        Id = other.Id;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Id = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ActivateResponse : pb::IMessage<ActivateResponse> {
+    private static readonly pb::MessageParser<ActivateResponse> _parser = new pb::MessageParser<ActivateResponse>(() => new ActivateResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ActivateResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[21]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateResponse(ActivateResponse other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateResponse Clone() {
+      return new ActivateResponse(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ActivateResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ActivateResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ActivateResponse other) {
+      if (other == null) {
+        return;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ActivateGameWindowRequest : pb::IMessage<ActivateGameWindowRequest> {
+    private static readonly pb::MessageParser<ActivateGameWindowRequest> _parser = new pb::MessageParser<ActivateGameWindowRequest>(() => new ActivateGameWindowRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ActivateGameWindowRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[22]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateGameWindowRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateGameWindowRequest(ActivateGameWindowRequest other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateGameWindowRequest Clone() {
+      return new ActivateGameWindowRequest(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ActivateGameWindowRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ActivateGameWindowRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ActivateGameWindowRequest other) {
+      if (other == null) {
+        return;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class ActivateGameWindowResponse : pb::IMessage<ActivateGameWindowResponse> {
+    private static readonly pb::MessageParser<ActivateGameWindowResponse> _parser = new pb::MessageParser<ActivateGameWindowResponse>(() => new ActivateGameWindowResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<ActivateGameWindowResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[23]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateGameWindowResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateGameWindowResponse(ActivateGameWindowResponse other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public ActivateGameWindowResponse Clone() {
+      return new ActivateGameWindowResponse(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as ActivateGameWindowResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(ActivateGameWindowResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(ActivateGameWindowResponse other) {
+      if (other == null) {
+        return;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class AllocateWindowRequest : pb::IMessage<AllocateWindowRequest> {
+    private static readonly pb::MessageParser<AllocateWindowRequest> _parser = new pb::MessageParser<AllocateWindowRequest>(() => new AllocateWindowRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AllocateWindowRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[24]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AllocateWindowRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AllocateWindowRequest(AllocateWindowRequest other) : this() {
+      parameter_ = other.parameter_;
+      location_ = other.location_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AllocateWindowRequest Clone() {
+      return new AllocateWindowRequest(this);
+    }
+
+    /// <summary>Field number for the "parameter" field.</summary>
+    public const int ParameterFieldNumber = 1;
+    private string parameter_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Parameter {
+      get { return parameter_; }
+      set {
+        parameter_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "location" field.</summary>
+    public const int LocationFieldNumber = 2;
+    private string location_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Location {
+      get { return location_; }
+      set {
+        location_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AllocateWindowRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AllocateWindowRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Parameter != other.Parameter) return false;
+      if (Location != other.Location) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Parameter.Length != 0) hash ^= Parameter.GetHashCode();
+      if (Location.Length != 0) hash ^= Location.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Parameter.Length != 0) {
+        output.WriteRawTag(10);
+        output.WriteString(Parameter);
+      }
+      if (Location.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Location);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Parameter.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Parameter);
+      }
+      if (Location.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Location);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AllocateWindowRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Parameter.Length != 0) {
+        Parameter = other.Parameter;
+      }
+      if (other.Location.Length != 0) {
+        Location = other.Location;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 10: {
+            Parameter = input.ReadString();
+            break;
+          }
+          case 18: {
+            Location = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class AllocateWindowResponse : pb::IMessage<AllocateWindowResponse> {
+    private static readonly pb::MessageParser<AllocateWindowResponse> _parser = new pb::MessageParser<AllocateWindowResponse>(() => new AllocateWindowResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<AllocateWindowResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[25]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AllocateWindowResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AllocateWindowResponse(AllocateWindowResponse other) : this() {
+      alreadyExists_ = other.alreadyExists_;
+      id_ = other.id_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public AllocateWindowResponse Clone() {
+      return new AllocateWindowResponse(this);
+    }
+
+    /// <summary>Field number for the "alreadyExists" field.</summary>
+    public const int AlreadyExistsFieldNumber = 1;
+    private bool alreadyExists_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool AlreadyExists {
+      get { return alreadyExists_; }
+      set {
+        alreadyExists_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 2;
+    private long id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as AllocateWindowResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(AllocateWindowResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (AlreadyExists != other.AlreadyExists) return false;
+      if (Id != other.Id) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (AlreadyExists != false) hash ^= AlreadyExists.GetHashCode();
+      if (Id != 0L) hash ^= Id.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (AlreadyExists != false) {
+        output.WriteRawTag(8);
+        output.WriteBool(AlreadyExists);
+      }
+      if (Id != 0L) {
+        output.WriteRawTag(16);
+        output.WriteInt64(Id);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (AlreadyExists != false) {
+        size += 1 + 1;
+      }
+      if (Id != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(AllocateWindowResponse other) {
+      if (other == null) {
+        return;
+      }
+      if (other.AlreadyExists != false) {
+        AlreadyExists = other.AlreadyExists;
+      }
+      if (other.Id != 0L) {
+        Id = other.Id;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            AlreadyExists = input.ReadBool();
+            break;
+          }
+          case 16: {
+            Id = input.ReadInt64();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SetWindowPropertiesRequest : pb::IMessage<SetWindowPropertiesRequest> {
+    private static readonly pb::MessageParser<SetWindowPropertiesRequest> _parser = new pb::MessageParser<SetWindowPropertiesRequest>(() => new SetWindowPropertiesRequest());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SetWindowPropertiesRequest> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[26]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SetWindowPropertiesRequest() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SetWindowPropertiesRequest(SetWindowPropertiesRequest other) : this() {
+      id_ = other.id_;
+      title_ = other.title_;
+      iconName_ = other.iconName_;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SetWindowPropertiesRequest Clone() {
+      return new SetWindowPropertiesRequest(this);
+    }
+
+    /// <summary>Field number for the "id" field.</summary>
+    public const int IdFieldNumber = 1;
+    private long id_;
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public long Id {
+      get { return id_; }
+      set {
+        id_ = value;
+      }
+    }
+
+    /// <summary>Field number for the "title" field.</summary>
+    public const int TitleFieldNumber = 2;
+    private string title_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string Title {
+      get { return title_; }
+      set {
+        title_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    /// <summary>Field number for the "iconName" field.</summary>
+    public const int IconNameFieldNumber = 3;
+    private string iconName_ = "";
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public string IconName {
+      get { return iconName_; }
+      set {
+        iconName_ = pb::ProtoPreconditions.CheckNotNull(value, "value");
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SetWindowPropertiesRequest);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SetWindowPropertiesRequest other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      if (Id != other.Id) return false;
+      if (Title != other.Title) return false;
+      if (IconName != other.IconName) return false;
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      if (Id != 0L) hash ^= Id.GetHashCode();
+      if (Title.Length != 0) hash ^= Title.GetHashCode();
+      if (IconName.Length != 0) hash ^= IconName.GetHashCode();
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+      if (Id != 0L) {
+        output.WriteRawTag(8);
+        output.WriteInt64(Id);
+      }
+      if (Title.Length != 0) {
+        output.WriteRawTag(18);
+        output.WriteString(Title);
+      }
+      if (IconName.Length != 0) {
+        output.WriteRawTag(26);
+        output.WriteString(IconName);
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      if (Id != 0L) {
+        size += 1 + pb::CodedOutputStream.ComputeInt64Size(Id);
+      }
+      if (Title.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(Title);
+      }
+      if (IconName.Length != 0) {
+        size += 1 + pb::CodedOutputStream.ComputeStringSize(IconName);
+      }
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SetWindowPropertiesRequest other) {
+      if (other == null) {
+        return;
+      }
+      if (other.Id != 0L) {
+        Id = other.Id;
+      }
+      if (other.Title.Length != 0) {
+        Title = other.Title;
+      }
+      if (other.IconName.Length != 0) {
+        IconName = other.IconName;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
+          case 8: {
+            Id = input.ReadInt64();
+            break;
+          }
+          case 18: {
+            Title = input.ReadString();
+            break;
+          }
+          case 26: {
+            IconName = input.ReadString();
+            break;
+          }
+        }
+      }
+    }
+
+  }
+
+  public sealed partial class SetWindowPropertiesResponse : pb::IMessage<SetWindowPropertiesResponse> {
+    private static readonly pb::MessageParser<SetWindowPropertiesResponse> _parser = new pb::MessageParser<SetWindowPropertiesResponse>(() => new SetWindowPropertiesResponse());
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pb::MessageParser<SetWindowPropertiesResponse> Parser { get { return _parser; } }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public static pbr::MessageDescriptor Descriptor {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.MessageTypes[27]; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    pbr::MessageDescriptor pb::IMessage.Descriptor {
+      get { return Descriptor; }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SetWindowPropertiesResponse() {
+      OnConstruction();
+    }
+
+    partial void OnConstruction();
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SetWindowPropertiesResponse(SetWindowPropertiesResponse other) : this() {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public SetWindowPropertiesResponse Clone() {
+      return new SetWindowPropertiesResponse(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override bool Equals(object other) {
+      return Equals(other as SetWindowPropertiesResponse);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public bool Equals(SetWindowPropertiesResponse other) {
+      if (ReferenceEquals(other, null)) {
+        return false;
+      }
+      if (ReferenceEquals(other, this)) {
+        return true;
+      }
+      return true;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override int GetHashCode() {
+      int hash = 1;
+      return hash;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public override string ToString() {
+      return pb::JsonFormatter.ToDiagnosticString(this);
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void WriteTo(pb::CodedOutputStream output) {
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public int CalculateSize() {
+      int size = 0;
+      return size;
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(SetWindowPropertiesResponse other) {
+      if (other == null) {
+        return;
+      }
+    }
+
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute]
+    public void MergeFrom(pb::CodedInputStream input) {
+      uint tag;
+      while ((tag = input.ReadTag()) != 0) {
+        switch(tag) {
+          default:
+            input.SkipLastField();
+            break;
         }
       }
     }

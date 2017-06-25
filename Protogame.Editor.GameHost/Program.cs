@@ -4,6 +4,7 @@ using Protogame.Editor.Api.Version1.Core;
 using Protogame.Editor.Api.Version1.ProjectManagement;
 using Protogame.Editor.CommonHost;
 using Protogame.Editor.CommonHost.SharedRendering;
+using Protogame.Editor.ExtHost;
 using Protogame.Editor.Grpc.ExtensionHost;
 using Protogame.Editor.Grpc.GameHost;
 using Protoinject;
@@ -55,6 +56,7 @@ namespace Protogame.Editor.GameHost
             var argsList = new Queue<string>(args);
             string editorUrl = null;
             string assemblyFile = null;
+            long? clientId = null;
             while (argsList.Count > 0)
             {
                 var arg = argsList.Dequeue();
@@ -86,6 +88,9 @@ namespace Protogame.Editor.GameHost
                     case "--assembly-path":
                         assemblyFile = argsList.Dequeue();
                         break;
+                    case "--client-id":
+                        clientId = long.Parse(argsList.Dequeue());
+                        break;
                 }
             }
 
@@ -94,9 +99,9 @@ namespace Protogame.Editor.GameHost
                 Console.Error.WriteLine(e.ExceptionObject);
             };
 
-            if (editorUrl == null || assemblyFile == null)
+            if (editorUrl == null || assemblyFile == null || clientId == null)
             {
-                System.Console.Error.WriteLine("Editor URL or assembly file not specified");
+                System.Console.Error.WriteLine("Editor URL, assembly file or client ID not specified");
                 return 1;
             }
 
@@ -107,11 +112,7 @@ namespace Protogame.Editor.GameHost
             System.Console.Error.WriteLine("Configuring kernel...");
 
             var kernel = new StandardKernel();
-            kernel.Bind<IEditorClientProvider>().To<EditorClientProvider>().InSingletonScope();
-            kernel.Bind<IProjectManager>().To<ProjectManager>().InSingletonScope();
-            kernel.Bind<IWantsUpdateSignal>().To<ProjectManagerUpdateSignal>().InSingletonScope();
-            kernel.Bind<IWantsUpdateSignal>().To<PresenceCheckerUpdateSignal>().InSingletonScope();
-            kernel.Bind<Api.Version1.Core.IConsoleHandle>().To<ConsoleHandle>().InSingletonScope();
+            CommonHostBinder.RegisterBindings(kernel, clientId.Value);
             kernel.Bind<IGameRunner>().To<HostedGameRunner>().InSingletonScope();
             kernel.Bind<HostedEventEngineHook>().To<HostedEventEngineHook>().InSingletonScope();
             kernel.Bind<ISharedRendererClientFactory>().ToFactory();
@@ -228,7 +229,8 @@ namespace Protogame.Editor.GameHost
             {
                 Services =
                 {
-                    GameHostServer.BindService(kernel.Get<GameHostServerImpl>())
+                    GameHostServer.BindService(kernel.Get<GameHostServerImpl>()),
+                    Grpc.Editor.SignalBus.BindService(kernel.Get<SignalBusImpl>()),
                 },
                 Ports = { new ServerPort("localhost", 0, ServerCredentials.Insecure) }
             };

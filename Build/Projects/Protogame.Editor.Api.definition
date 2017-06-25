@@ -18,15 +18,22 @@
   </Properties>
   <Files>
     <Compile Include="Version1\Core\IConsoleHandle.cs" />
-    <Compile Include="Version1\Core\IWantsUpdateSignal.cs" />
-    <Compile Include="Version1\EditorWindow\EditorWindowDeclaration.cs" />
-    <Compile Include="Version1\EditorWindow\EditorWindowLevel.cs" />
-    <Compile Include="Version1\EditorWindow\IEditorWindow.cs" />
-    <Compile Include="Version1\EditorWindow\IEditorWindowApi.cs" />
-    <Compile Include="Version1\EditorWindow\IEditorWindowProvider.cs" />
+    <Compile Include="Version1\Core\ISignalReceiver.cs" />
+    <Compile Include="Version1\Core\ISignalReceiverRegistration.cs" />
+    <Compile Include="Version1\Core\ISignalSender.cs" />
+    <Compile Include="Version1\Core\SignalData.cs" />
+    <Compile Include="Version1\Core\WellKnownSignalName.cs" />
     <Compile Include="Version1\ExtensionAttribute.cs" />
     <Compile Include="Version1\IEditorExtension.cs" />
     <Compile Include="Version1\IGameHostExtension.cs" />
+    <Compile Include="Version1\Layout\ClickableHorizontalContainer.cs" />
+    <Compile Include="Version1\Layout\DockableLayoutContainer.cs" />
+    <Compile Include="Version1\Layout\HorizontalSpacedContainer.cs" />
+    <Compile Include="Version1\Layout\IDockableContainer.cs" />
+    <Compile Include="Version1\Layout\ITabbableContainer.cs" />
+    <Compile Include="Version1\Layout\SingleTabbedContainer.cs" />
+    <Compile Include="Version1\Layout\ToolbarButton.cs" />
+    <Compile Include="Version1\Layout\ToolbarContainer.cs" />
     <Compile Include="Version1\Menu\IMenuProvider.cs" />
     <Compile Include="Version1\Menu\MenuEntry.cs" />
     <Compile Include="Version1\ProjectManagement\IDefinitionInfo.cs" />
@@ -35,5 +42,13 @@
     <Compile Include="Version1\ProjectManagement\IProjectManager.cs" />
     <Compile Include="Version1\Toolbar\GenericToolbarEntry.cs" />
     <Compile Include="Version1\Toolbar\IToolbarProvider.cs" />
+    <Compile Include="Version1\Window\EditorWindow.cs" />
+    <Compile Include="Version1\Window\EditorWindowDeclaration.cs" />
+    <Compile Include="Version1\Window\EditorWindowLevel.cs" />
+    <Compile Include="Version1\Window\IEditorWindow.cs" />
+    <Compile Include="Version1\Window\IEditorWindowApi.cs" />
+    <Compile Include="Version1\Window\IEditorWindowProvider.cs" />
+    <Compile Include="Version1\Workspace\IWindowManagement.cs" />
+    <Compile Include="Version1\Workspace\PanelLocation.cs" />
   </Files>
 </Project>

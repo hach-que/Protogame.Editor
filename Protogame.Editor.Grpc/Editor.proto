@@ -111,3 +111,54 @@ message PlaybackStateChangedResponse {
 message Timestamp {
   uint64 unixTimestamp = 1;
 }
+
+service SignalBus {
+  rpc Receive(ReceiveSignalRequest) returns (ReceiveSignalResponse);
+}
+
+message ReceiveSignalRequest {
+  string name = 1;
+  bytes data = 2;
+}
+
+message ReceiveSignalResponse {
+}
+
+service WindowManagement {
+  rpc Activate(ActivateRequest) returns (ActivateResponse);
+  rpc ActivateGameWindow(ActivateGameWindowRequest) returns (ActivateGameWindowResponse);
+  rpc AllocateWindow(AllocateWindowRequest) returns (AllocateWindowResponse);
+  rpc SetWindowProperties(SetWindowPropertiesRequest) returns (SetWindowPropertiesResponse);
+}
+
+message ActivateRequest {
+  int64 id = 1;
+}
+
+message ActivateResponse {
+}
+
+message ActivateGameWindowRequest {
+}
+
+message ActivateGameWindowResponse {
+}
+
+message AllocateWindowRequest {
+  string parameter = 1;
+  string location = 2;
+}
+
+message AllocateWindowResponse {
+  bool alreadyExists = 1;
+  int64 id = 2;
+}
+
+message SetWindowPropertiesRequest {
+  int64 id = 1;
+  string title = 2;
+  string iconName = 3;
+}
+
+message SetWindowPropertiesResponse {
+}

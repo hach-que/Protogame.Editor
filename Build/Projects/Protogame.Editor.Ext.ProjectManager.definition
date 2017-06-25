@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Name="Protogame.Editor.Ext.ProjectManager" Path="Protogame.Editor.Ext.ProjectManager" Type="Library">
+  <References>
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Protoinject" />
+    <Reference Include="Protogame" />
+    <Reference Include="Protogame.Editor.Api" />
+  </References>
+  <Properties>
+    <DebugSymbolsOnRelease>full</DebugSymbolsOnRelease>
+  </Properties>
+  <Files>
+    <Compile Include="ProjectEditorWindow.cs" />
+    <Compile Include="ProjectManagerEditorExtension.cs" />
+    <Compile Include="ProjectManagerSignalReceiver.cs" />
+  </Files>
+</Project>

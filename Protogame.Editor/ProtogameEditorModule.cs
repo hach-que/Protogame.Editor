@@ -3,12 +3,15 @@ using Protogame.Editor.Nui;
 using Protogame.Editor.Layout;
 using Protogame.Editor.Menu;
 using Protogame.Editor.ProjectManagement;
-using Protogame.Editor.EditorWindow;
+using Protogame.Editor.Window;
 using Protogame.Editor.LoadedGame;
 using Protogame.Editor.Extension;
 using Protogame.Editor.Server;
 using Protogame.Editor.SharedRendering;
 using Protogame.Editor.Toolbar;
+using Protogame.Editor.Api.Version1.Layout;
+using Protogame.Editor.Api.Version1.Workspace;
+using Protogame.Editor.Workspace;
 
 namespace Protogame.Editor
 {
@@ -51,8 +54,6 @@ namespace Protogame.Editor
             kernel.Bind<IProjectManagerUi>().To<ProjectManagerUi>().InSingletonScope();
 
             kernel.Bind<IEditorWindowFactory>().ToFactory();
-
-            kernel.Bind<ProjectEditorWindow>().To<ProjectEditorWindow>().DiscardNodeOnResolve();
 
             kernel.Rebind<IConsole>().To<EditorConsole>().InSingletonScope();
 

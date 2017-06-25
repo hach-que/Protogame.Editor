@@ -19,6 +19,7 @@ namespace Protogame.Editor.Extension
         private readonly IGrpcServer _grpcServer;
         private Extension[] _publicExtensions;
         private bool _recomputeExtensions;
+        private long _nextId;
 
         public ExtensionManager(
             IKernel kernel,
@@ -31,9 +32,41 @@ namespace Protogame.Editor.Extension
             _grpcServer = grpcServer;
             _publicExtensions = new Extension[0];
             _recomputeExtensions = false;
+            _nextId = 0x10000;
         }
 
         public Extension[] Extensions => _publicExtensions;
+
+        public Extension GetExtensionByServerCallContext(ServerCallContext context)
+        {
+            var clientId = context.RequestHeaders.FirstOrDefault(x => x.Key == "clientid");
+
+            if (clientId != null)
+            {
+                return GetExtensionById(long.Parse(clientId.Value));
+            }
+
+            throw new InvalidOperationException("Client request not identified!");
+        }
+
+        public Extension GetExtensionById(long id)
+        {
+            var ext = _publicExtensions.FirstOrDefault(x => x.Id == id);
+
+            if (ext == null)
+            {
+                // Check if only currently registered privately (because of asynchronous behaviour).
+                var privExt = _extensions.Values.FirstOrDefault(x => x.ClientId == id);
+                if (privExt == null)
+                {
+                    throw new InvalidOperationException("Client extension not found: " + id);
+                }
+
+                return new Extension(privExt.ClientId, privExt.File.Name, privExt.File.FullName, privExt.ExtensionChannel);
+            }
+
+            return ext;
+        }
 
         public void DebugExtension(Extension extension)
         {
@@ -93,6 +126,7 @@ namespace Protogame.Editor.Extension
                     ext.Value.ShouldRestart)
                 {
                     var extHostPath = Path.Combine(new FileInfo(Assembly.GetExecutingAssembly().Location).DirectoryName, "Protogame.Editor.ExtHost.exe");
+                    var clientId = _nextId++;
                     var processStartInfo = new ProcessStartInfo
                     {
                         FileName = extHostPath,
@@ -100,7 +134,8 @@ namespace Protogame.Editor.Extension
                             (ext.Value.ShouldDebug ? "--debug " : "") + 
                             "--track " + Process.GetCurrentProcess().Id + 
                             " --editor-url " + _grpcServer.GetServerUrl() + 
-                            " --assembly-path \"" + ext.Value.File.FullName + "\"",
+                            " --assembly-path \"" + ext.Value.File.FullName + "\"" +
+                            " --client-id " + clientId,
                         WorkingDirectory = ext.Value.File.DirectoryName,
                         UseShellExecute = false,
                         RedirectStandardOutput = true,
@@ -111,6 +146,7 @@ namespace Protogame.Editor.Extension
                     ext.Value.File = new FileInfo(ext.Value.File.FullName);
                     ext.Value.IsDebugging = ext.Value.ShouldDebug;
                     ext.Value.ShouldRestart = false;
+                    ext.Value.ClientId = clientId;
                     if (ext.Value.ExtensionProcess != null)
                     {
                         try
@@ -150,7 +186,7 @@ namespace Protogame.Editor.Extension
                         var url = e.Data?.Trim();
                         _consoleHandle.LogDebug("Creating gRPC channel on {0}...", url);
                         ext.Value.ExtensionChannel = new Channel(url, ChannelCredentials.Insecure);
-
+                        
                         _recomputeExtensions = true;
                     };
                     ext.Value.ExtensionProcess.ErrorDataReceived += (sender, e) =>
@@ -170,7 +206,7 @@ namespace Protogame.Editor.Extension
             {
                 _publicExtensions = _extensions.Values
                     .Where(x => x.ExtensionChannel != null)
-                    .Select(x => new Extension(x.File.Name, x.File.FullName, x.ExtensionChannel))
+                    .Select(x => new Extension(x.ClientId, x.File.Name, x.File.FullName, x.ExtensionChannel))
                     .ToArray();
                 _consoleHandle.LogInfo("Recomputed loaded extension list");
                 _recomputeExtensions = false;
@@ -192,6 +228,8 @@ namespace Protogame.Editor.Extension
             public bool IsDebugging { get; set; }
 
             public bool ShouldRestart { get; set; }
+
+            public long ClientId { get; set; }
         }
     }
 }

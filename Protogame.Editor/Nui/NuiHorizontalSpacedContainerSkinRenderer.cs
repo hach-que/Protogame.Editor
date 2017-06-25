@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Protogame;
 using System.Linq;
 using Protogame.Editor.Layout;
+using Protogame.Editor.Api.Version1.Layout;
 
 namespace Protogame.Editor.Nui
 {

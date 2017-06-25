@@ -1,28 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Protogame.Editor.Grpc.Editor;
+using Protogame.Editor.Window;
 using System;
+using System.Threading.Tasks;
 
 namespace Protogame.Editor.LoadedGame
 {
-    public interface ILoadedGame
+    public interface ILoadedGame : IHostedWindow
     {
         void Update(IGameContext gameContext, IUpdateContext updateContext);
 
-        void Render(IGameContext gameContext, IRenderContext renderContext);
-
-        void IncrementReadRenderTargetIfPossible();
-
-        RenderTarget2D GetCurrentGameRenderTarget();
-
-        void SetPositionOffset(Point offset);
-
-        void SetRenderTargetSize(Point size);
-
         Point? GetRenderTargetSize();
-
-        void QueueEvent(Event @event);
-
-        string GetBaseDirectory();
 
         LoadedGameState GetPlaybackState();
 
@@ -32,22 +21,10 @@ namespace Protogame.Editor.LoadedGame
 
         void RequestRestart();
 
-        DateTime? GetPlayingStartTime();
-
         void RunInDebug();
 
         void RunInDebugGpu();
 
-        /*
-        LoadedGameState State { get; }
-
-        bool Playing { get; set; }
-
-        TimeSpan PlayingFor { get; }
-
-        void Restart();
-
-        Tuple<bool, bool> GetStallState();
-        */
+        Task SendSignal(ReceiveSignalRequest req);
     }
 }

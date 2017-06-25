@@ -528,5 +528,268 @@ namespace Protogame.Editor.Grpc.Editor {
     }
 
   }
+  public static partial class SignalBus
+  {
+    static readonly string __ServiceName = "SignalBus";
+
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest> __Marshaller_ReceiveSignalRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse> __Marshaller_ReceiveSignalResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse.Parser.ParseFrom);
+
+    static readonly grpc::Method<global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest, global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse> __Method_Receive = new grpc::Method<global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest, global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Receive",
+        __Marshaller_ReceiveSignalRequest,
+        __Marshaller_ReceiveSignalResponse);
+
+    /// <summary>Service descriptor</summary>
+    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+    {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.Services[4]; }
+    }
+
+    /// <summary>Base class for server-side implementations of SignalBus</summary>
+    public abstract partial class SignalBusBase
+    {
+      public virtual global::System.Threading.Tasks.Task<global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse> Receive(global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+    }
+
+    /// <summary>Client for SignalBus</summary>
+    public partial class SignalBusClient : grpc::ClientBase<SignalBusClient>
+    {
+      /// <summary>Creates a new client for SignalBus</summary>
+      /// <param name="channel">The channel to use to make remote calls.</param>
+      public SignalBusClient(grpc::Channel channel) : base(channel)
+      {
+      }
+      /// <summary>Creates a new client for SignalBus that uses a custom <c>CallInvoker</c>.</summary>
+      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+      public SignalBusClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      {
+      }
+      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+      protected SignalBusClient() : base()
+      {
+      }
+      /// <summary>Protected constructor to allow creation of configured clients.</summary>
+      /// <param name="configuration">The client configuration.</param>
+      protected SignalBusClient(ClientBaseConfiguration configuration) : base(configuration)
+      {
+      }
+
+      public virtual global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse Receive(global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return Receive(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse Receive(global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Receive, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse> ReceiveAsync(global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ReceiveAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.ReceiveSignalResponse> ReceiveAsync(global::Protogame.Editor.Grpc.Editor.ReceiveSignalRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Receive, null, options, request);
+      }
+      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      protected override SignalBusClient NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new SignalBusClient(configuration);
+      }
+    }
+
+    /// <summary>Creates service definition that can be registered with a server</summary>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    public static grpc::ServerServiceDefinition BindService(SignalBusBase serviceImpl)
+    {
+      return grpc::ServerServiceDefinition.CreateBuilder()
+          .AddMethod(__Method_Receive, serviceImpl.Receive).Build();
+    }
+
+  }
+  public static partial class WindowManagement
+  {
+    static readonly string __ServiceName = "WindowManagement";
+
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.ActivateRequest> __Marshaller_ActivateRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.ActivateRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.ActivateResponse> __Marshaller_ActivateResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.ActivateResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest> __Marshaller_ActivateGameWindowRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse> __Marshaller_ActivateGameWindowResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest> __Marshaller_AllocateWindowRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse> __Marshaller_AllocateWindowResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest> __Marshaller_SetWindowPropertiesRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse> __Marshaller_SetWindowPropertiesResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse.Parser.ParseFrom);
+
+    static readonly grpc::Method<global::Protogame.Editor.Grpc.Editor.ActivateRequest, global::Protogame.Editor.Grpc.Editor.ActivateResponse> __Method_Activate = new grpc::Method<global::Protogame.Editor.Grpc.Editor.ActivateRequest, global::Protogame.Editor.Grpc.Editor.ActivateResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "Activate",
+        __Marshaller_ActivateRequest,
+        __Marshaller_ActivateResponse);
+
+    static readonly grpc::Method<global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest, global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse> __Method_ActivateGameWindow = new grpc::Method<global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest, global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "ActivateGameWindow",
+        __Marshaller_ActivateGameWindowRequest,
+        __Marshaller_ActivateGameWindowResponse);
+
+    static readonly grpc::Method<global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest, global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse> __Method_AllocateWindow = new grpc::Method<global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest, global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AllocateWindow",
+        __Marshaller_AllocateWindowRequest,
+        __Marshaller_AllocateWindowResponse);
+
+    static readonly grpc::Method<global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest, global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse> __Method_SetWindowProperties = new grpc::Method<global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest, global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "SetWindowProperties",
+        __Marshaller_SetWindowPropertiesRequest,
+        __Marshaller_SetWindowPropertiesResponse);
+
+    /// <summary>Service descriptor</summary>
+    public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
+    {
+      get { return global::Protogame.Editor.Grpc.Editor.EditorReflection.Descriptor.Services[5]; }
+    }
+
+    /// <summary>Base class for server-side implementations of WindowManagement</summary>
+    public abstract partial class WindowManagementBase
+    {
+      public virtual global::System.Threading.Tasks.Task<global::Protogame.Editor.Grpc.Editor.ActivateResponse> Activate(global::Protogame.Editor.Grpc.Editor.ActivateRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse> ActivateGameWindow(global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse> AllocateWindow(global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task<global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse> SetWindowProperties(global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+    }
+
+    /// <summary>Client for WindowManagement</summary>
+    public partial class WindowManagementClient : grpc::ClientBase<WindowManagementClient>
+    {
+      /// <summary>Creates a new client for WindowManagement</summary>
+      /// <param name="channel">The channel to use to make remote calls.</param>
+      public WindowManagementClient(grpc::Channel channel) : base(channel)
+      {
+      }
+      /// <summary>Creates a new client for WindowManagement that uses a custom <c>CallInvoker</c>.</summary>
+      /// <param name="callInvoker">The callInvoker to use to make remote calls.</param>
+      public WindowManagementClient(grpc::CallInvoker callInvoker) : base(callInvoker)
+      {
+      }
+      /// <summary>Protected parameterless constructor to allow creation of test doubles.</summary>
+      protected WindowManagementClient() : base()
+      {
+      }
+      /// <summary>Protected constructor to allow creation of configured clients.</summary>
+      /// <param name="configuration">The client configuration.</param>
+      protected WindowManagementClient(ClientBaseConfiguration configuration) : base(configuration)
+      {
+      }
+
+      public virtual global::Protogame.Editor.Grpc.Editor.ActivateResponse Activate(global::Protogame.Editor.Grpc.Editor.ActivateRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return Activate(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Protogame.Editor.Grpc.Editor.ActivateResponse Activate(global::Protogame.Editor.Grpc.Editor.ActivateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_Activate, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.ActivateResponse> ActivateAsync(global::Protogame.Editor.Grpc.Editor.ActivateRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ActivateAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.ActivateResponse> ActivateAsync(global::Protogame.Editor.Grpc.Editor.ActivateRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_Activate, null, options, request);
+      }
+      public virtual global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse ActivateGameWindow(global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ActivateGameWindow(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse ActivateGameWindow(global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_ActivateGameWindow, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse> ActivateGameWindowAsync(global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return ActivateGameWindowAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.ActivateGameWindowResponse> ActivateGameWindowAsync(global::Protogame.Editor.Grpc.Editor.ActivateGameWindowRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_ActivateGameWindow, null, options, request);
+      }
+      public virtual global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse AllocateWindow(global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return AllocateWindow(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse AllocateWindow(global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AllocateWindow, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse> AllocateWindowAsync(global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return AllocateWindowAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.AllocateWindowResponse> AllocateWindowAsync(global::Protogame.Editor.Grpc.Editor.AllocateWindowRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AllocateWindow, null, options, request);
+      }
+      public virtual global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse SetWindowProperties(global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return SetWindowProperties(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse SetWindowProperties(global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_SetWindowProperties, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse> SetWindowPropertiesAsync(global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest request, grpc::Metadata headers = null, DateTime? deadline = null, CancellationToken cancellationToken = default(CancellationToken))
+      {
+        return SetWindowPropertiesAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesResponse> SetWindowPropertiesAsync(global::Protogame.Editor.Grpc.Editor.SetWindowPropertiesRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_SetWindowProperties, null, options, request);
+      }
+      /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
+      protected override WindowManagementClient NewInstance(ClientBaseConfiguration configuration)
+      {
+        return new WindowManagementClient(configuration);
+      }
+    }
+
+    /// <summary>Creates service definition that can be registered with a server</summary>
+    /// <param name="serviceImpl">An object implementing the server-side handling logic.</param>
+    public static grpc::ServerServiceDefinition BindService(WindowManagementBase serviceImpl)
+    {
+      return grpc::ServerServiceDefinition.CreateBuilder()
+          .AddMethod(__Method_Activate, serviceImpl.Activate)
+          .AddMethod(__Method_ActivateGameWindow, serviceImpl.ActivateGameWindow)
+          .AddMethod(__Method_AllocateWindow, serviceImpl.AllocateWindow)
+          .AddMethod(__Method_SetWindowProperties, serviceImpl.SetWindowProperties).Build();
+    }
+
+  }
 }
 #endregion

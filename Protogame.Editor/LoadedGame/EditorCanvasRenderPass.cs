@@ -1,5 +1,8 @@
-﻿using Microsoft.Xna.Framework.Graphics;
+﻿using System;
+using Microsoft.Xna.Framework.Graphics;
 using Protogame.Editor.ProjectManagement;
+using Protogame.Editor.Window;
+using System.Collections.Generic;
 
 namespace Protogame.Editor.LoadedGame
 {
@@ -7,6 +10,8 @@ namespace Protogame.Editor.LoadedGame
     {
         private readonly ILoadedGame _loadedGame;
         private readonly IThumbnailSampler _thumbnailSampler;
+        private readonly List<HostedEditorWindow> _hostedEditorWindows;
+        private readonly List<HostedEditorWindow> _acquiredEditorWindows;
 
         public EditorCanvasRenderPass(
             IBackBufferDimensions backBufferDimensions,
@@ -16,6 +21,8 @@ namespace Protogame.Editor.LoadedGame
         {
             _loadedGame = loadedGame;
             _thumbnailSampler = thumbnailSampler;
+            _hostedEditorWindows = new List<HostedEditorWindow>();
+            _acquiredEditorWindows = new List<HostedEditorWindow>();
         }
 
         public override void BeginRenderPass(IGameContext gameContext, IRenderContext renderContext, IRenderPass previousPass, RenderTarget2D postProcessingSource)
@@ -25,23 +32,43 @@ namespace Protogame.Editor.LoadedGame
 
         public override void EndRenderPass(IGameContext gameContext, IRenderContext renderContext, IRenderPass nextPass)
         {
-            var renderTarget = _loadedGame.GetCurrentGameRenderTarget();
-            var didAcquire = false;
-            if (renderTarget != null)
+            foreach (var hew in _hostedEditorWindows)
             {
-                didAcquire = renderTarget.AcquireLock(1234, 1);
+                var renderTarget = hew.GetRenderTarget();
+                if (renderTarget != null)
+                {
+                    if (renderTarget.AcquireLock(1234, 1))
+                    {
+                        _acquiredEditorWindows.Add(hew);
+                    }
+                }
             }
 
             base.EndRenderPass(gameContext, renderContext, nextPass);
 
             _thumbnailSampler.WriteThumbnailIfNecessary(gameContext, renderContext);
 
-            if (didAcquire)
+            foreach (var hew in _acquiredEditorWindows)
             {
-                renderTarget.ReleaseLock(1234);
+                var renderTarget = hew.GetRenderTarget();
+                if (renderTarget != null)
+                {
+                    renderTarget.ReleaseLock(1234);
+                }
+
+                hew.IncrementReadRenderTargetIfPossible();
             }
 
-            _loadedGame.IncrementReadRenderTargetIfPossible();
+            _hostedEditorWindows.Clear();
+            _acquiredEditorWindows.Clear();
+        }
+
+        public void QueueHostedEditorWindow(HostedEditorWindow hostedEditorWindow)
+        {
+            if (!_hostedEditorWindows.Contains(hostedEditorWindow))
+            {
+                _hostedEditorWindows.Add(hostedEditorWindow);
+            }
         }
     }
 }

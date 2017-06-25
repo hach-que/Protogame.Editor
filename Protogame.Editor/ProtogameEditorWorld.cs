@@ -8,7 +8,7 @@ using Protogame;
 using Protogame.Editor.Nui;
 using Protogame.Editor.Menu;
 using Protogame.Editor.Layout;
-using Protogame.Editor.EditorWindow;
+using Protogame.Editor.Window;
 using Protogame.Editor.ProjectManagement;
 using Protogame.Editor.LoadedGame;
 using System;
@@ -16,6 +16,9 @@ using Protogame.Editor.Extension;
 using System.Diagnostics;
 using Protogame.Editor.Toolbar;
 using System.Linq;
+using Protogame.Editor.Api.Version1.Layout;
+using Protogame.Editor.Api.Version1.Workspace;
+using Protogame.Editor.Workspace;
 
 namespace Protogame.Editor
 {
@@ -39,7 +42,7 @@ namespace Protogame.Editor
         private Button _stopButton;*/
         private DockableLayoutContainer _workspaceContainer;
         private WorldEditorWindow _worldEditorWindow;
-        private GameEditorWindow _gameEditorWindow;
+        private HostedEditorWindow _gameEditorWindow;
         private readonly IRecentProjects _recentProjects;
         private readonly IThumbnailSampler _thumbnailSampler;
         private readonly IExtensionManager _extensionManager;
@@ -101,7 +104,6 @@ namespace Protogame.Editor
             dockableLayoutContainer.SetRightRegion(rightDockableLayoutContainer);
 
             var bottomDockableLayoutContainer = new DockableLayoutContainer();
-            bottomDockableLayoutContainer.AddInnerRegion(_editorWindowFactory.CreateProjectEditorWindow());
             bottomDockableLayoutContainer.AddInnerRegion(_editorWindowFactory.CreateConsoleEditorWindow());
             dockableLayoutContainer.SetBottomRegion(bottomDockableLayoutContainer);
 
@@ -116,7 +118,7 @@ namespace Protogame.Editor
 
             _workspaceContainer.AddInnerRegion(_editorWindowFactory.CreateStartEditorWindow());
             _workspaceContainer.AddInnerRegion(_worldEditorWindow = _editorWindowFactory.CreateWorldEditorWindow());
-            _workspaceContainer.AddInnerRegion(_gameEditorWindow = _editorWindowFactory.CreateGameEditorWindow());
+            _workspaceContainer.AddInnerRegion(_gameEditorWindow = _editorWindowFactory.CreateHostedEditorWindow(_loadedGame));
 
             var toolContainer = new RelativeContainer();
             /*var panButton = CreateToolButton("texture.IconToolPan", "pan");
@@ -143,7 +145,11 @@ namespace Protogame.Editor
 
             _canvas.SetChild(verticalContainer);
 
-            _windowManagement.SetMainDocumentContainer(_workspaceContainer);
+            (_windowManagement as DefaultWindowManagement).SetContainers(
+                _workspaceContainer,
+                leftDockableLayoutContainer,
+                rightDockableLayoutContainer,
+                bottomDockableLayoutContainer);
         }
 
         /*

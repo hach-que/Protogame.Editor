@@ -19,9 +19,10 @@ namespace Protogame.Editor.GameHost
         private readonly ILogShipping _logShipping;
         private readonly Api.Version1.Core.IConsoleHandle _consoleHandle;
         private readonly ISharedRendererClientFactory _sharedRendererClientFactory;
-        private readonly IWantsUpdateSignal[] _wantsUpdateSignals;
+        private readonly ISignalBus _signalBus;
         private readonly GameHosterClient _gameHosterClient;
 
+        private bool _hasCalledEditorStart;
         private EditorHostGame _editorHostGame;
         private bool _hasAssignedGame;
         private bool _hasRunGameUpdate;
@@ -49,15 +50,18 @@ namespace Protogame.Editor.GameHost
             ILogShipping logShipping,
             Api.Version1.Core.IConsoleHandle consoleHandle,
             ISharedRendererClientFactory sharedRendererClientFactory,
-            IWantsUpdateSignal[] wantsUpdateSignals,
+            ISignalBus signalBus,
             IEditorClientProvider editorClientProvider)
         {
             _game = game;
             _logShipping = logShipping;
             _consoleHandle = consoleHandle;
             _sharedRendererClientFactory = sharedRendererClientFactory;
-            _wantsUpdateSignals = wantsUpdateSignals;
+            _signalBus = signalBus;
             _gameHosterClient = editorClientProvider.GetClient<GameHosterClient>();
+
+            _hasCalledEditorStart = false;
+            _signalBus.ConfigureReceivers();
 
             State = LoadedGameState.Loaded;
             _playing = false;
@@ -234,10 +238,13 @@ namespace Protogame.Editor.GameHost
 
         private void DoUpdate(GameTime gameTime)
         {
-            foreach (var ws in _wantsUpdateSignals)
+            if (!_hasCalledEditorStart)
             {
-                ws.Update();
+                _signalBus.SendHostSignal(WellKnownSignalName.EditorStart, SignalData.Empty);
+                _hasCalledEditorStart = true;
             }
+
+            _signalBus.SendHostSignal(WellKnownSignalName.EditorUpdate, SignalData.Empty);
 
             if (_playing)
             {

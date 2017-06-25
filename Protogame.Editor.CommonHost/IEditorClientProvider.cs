@@ -1,9 +1,11 @@
-﻿namespace Protogame.Editor.CommonHost
+﻿using Grpc.Core;
+
+namespace Protogame.Editor.CommonHost
 {
     public interface IEditorClientProvider
     {
         void CreateChannel(string url);
-        
-        T GetClient<T>();
+
+        T GetClient<T>() where T : ClientBase;
     }
 }

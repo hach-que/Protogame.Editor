@@ -1,4 +1,5 @@
-﻿using Protogame.Editor.Layout;
+﻿using Protogame.Editor.Api.Version1.Layout;
+using Protogame.Editor.Layout;
 
 namespace Protogame.Editor.Nui
 {

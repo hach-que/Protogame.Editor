@@ -17,8 +17,8 @@
     <Compile Include="CodeManagerEditorExtension.cs" />
     <Compile Include="CodeManagerMenuProvider.cs" />
     <Compile Include="CodeManagerService.cs" />
+    <Compile Include="CodeManagerSignalReciever.cs" />
     <Compile Include="CodeManagerToolbarProvider.cs" />
-    <Compile Include="CodeManagerUpdateSignal.cs" />
     <Compile Include="ICodeManagerService.cs" />
   </Files>
 </Project>

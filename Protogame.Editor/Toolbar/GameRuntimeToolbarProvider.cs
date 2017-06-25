@@ -1,6 +1,7 @@
-﻿using Protogame.Editor.EditorWindow;
+﻿using Protogame.Editor.Window;
 using Protogame.Editor.LoadedGame;
 using Protogame.Editor.ProjectManagement;
+using Protogame.Editor.Api.Version1.Workspace;
 
 namespace Protogame.Editor.Toolbar
 {
@@ -42,7 +43,7 @@ namespace Protogame.Editor.Toolbar
         private void HandlePlay(GenericToolbarEntry toolbarEntry)
         {
             _loadedGame.SetPlaybackMode(true);
-            _windowManagement.ActivateWhere(x => x is GameEditorWindow);
+            _windowManagement.ActivateGameWindow();
         }
 
         private void HandlePause(GenericToolbarEntry toolbarEntry)
@@ -63,7 +64,6 @@ namespace Protogame.Editor.Toolbar
                 _loadedGame.GetPlaybackState() == LoadedGameState.Paused)
             {
                 _loadedGame.RequestRestart();
-                _windowManagement.ActivateWhere(x => x is WorldEditorWindow);
             }
         }
     }

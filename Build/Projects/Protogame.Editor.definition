@@ -19,12 +19,14 @@
     <Reference Include="Protogame.Editor.ExtHost" />
     <Reference Include="Protogame.Editor.ThirdParty" />
     <Reference Include="Protogame.Editor.Grpc" />
+    <Reference Include="Protogame.Editor.Api" />
     <Reference Include="Grpc" />
     <Reference Include="Grpc.Native" />
     <Reference Include="System.Interactive.Async" />
     <Reference Include="Google.Protobuf" />
     <Reference Include="Protogame.Editor.Ext.Inspector" />
     <Reference Include="Protogame.Editor.Ext.CodeManager" />
+    <Reference Include="Protogame.Editor.Ext.ProjectManager" />
   </References>
   <Properties>
     <DebugSymbolsOnRelease>full</DebugSymbolsOnRelease>
@@ -42,33 +44,13 @@
     <Compile Include="EditorHotKeyBinder.cs" />
     <Compile Include="EditorHotKeyListener.cs" />
     <Compile Include="EditorUserDataPathProvider.cs" />
-    <Compile Include="EditorWindow\ConsoleEditorWindow.cs" />
-    <Compile Include="EditorWindow\DefaultWindowManagement.cs" />
-    <Compile Include="EditorWindow\EditorWindow.cs" />
-    <Compile Include="EditorWindow\ExtensionManagerEditorWindow.cs" />
-    <Compile Include="EditorWindow\GameEditorWindow.cs" />
-    <Compile Include="EditorWindow\HierarchyEditorWindow.cs" />
-    <Compile Include="EditorWindow\IEditorWindowFactory.cs" />
-    <Compile Include="EditorWindow\InspectorEditorWindow.cs" />
-    <Compile Include="EditorWindow\IWindowManagement.cs" />
-    <Compile Include="EditorWindow\ProfilerEditorWindow.cs" />
-    <Compile Include="EditorWindow\ProjectEditorWindow.cs" />
-    <Compile Include="EditorWindow\StartEditorWindow.cs" />
-    <Compile Include="EditorWindow\WorldEditorWindow.cs" />
     <Compile Include="Extension\Extension.cs" />
     <Compile Include="Extension\ExtensionDynamicServiceProvider.cs" />
+    <Compile Include="Extension\ExtensionHostedWindow.cs" />
     <Compile Include="Extension\ExtensionManager.cs" />
     <Compile Include="Extension\IDynamicServiceProvider.cs" />
     <Compile Include="Extension\IExtensionManager.cs" />
-    <Compile Include="Layout\ClickableHorizontalContainer.cs" />
     <Compile Include="Layout\ConsoleContainer.cs" />
-    <Compile Include="Layout\DockableLayoutContainer.cs" />
-    <Compile Include="Layout\HorizontalSpacedContainer.cs" />
-    <Compile Include="Layout\IDockableContainer.cs" />
-    <Compile Include="Layout\ITabbableContainer.cs" />
-    <Compile Include="Layout\SingleTabbedContainer.cs" />
-    <Compile Include="Layout\ToolbarButton.cs" />
-    <Compile Include="Layout\ToolbarContainer.cs" />
     <Compile Include="LoadedGame\DefaultLoadedGame.cs" />
     <Compile Include="LoadedGame\EditorCanvasRenderPass.cs" />
     <Compile Include="LoadedGame\ILoadedGame.cs" />
@@ -99,8 +81,6 @@
     <Compile Include="Nui\NuiToolbarButtonSkinRenderer.cs" />
     <Compile Include="Nui\NuiToolbarContainerSkinRenderer.cs" />
     <Compile Include="Nui\NuiTreeViewSkinRenderer.cs" />
-    <Compile Include="Override\GameBackBufferDimensions.cs" />
-    <Compile Include="Override\GameBaseDirectory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="ProjectManagement\DefinitionInfo.cs" />
     <Compile Include="ProjectManagement\IDefinitionInfo.cs" />
@@ -108,6 +88,7 @@
     <Compile Include="ProjectManagement\IProject.cs" />
     <Compile Include="ProjectManagement\IProjectManager.cs" />
     <Compile Include="ProjectManagement\IProjectManagerUi.cs" />
+    <Compile Include="ProjectManagement\IThumbnailSampler.cs" />
     <Compile Include="ProjectManagement\PackageInfo.cs" />
     <Compile Include="ProjectManagement\Project.cs" />
     <Compile Include="ProjectManagement\ProjectManager.cs" />
@@ -124,6 +105,8 @@
     <Compile Include="Server\IGrpcServer.cs" />
     <Compile Include="Server\PresenceImpl.cs" />
     <Compile Include="Server\ProjectManagerImpl.cs" />
+    <Compile Include="Server\SignalBusImpl.cs" />
+    <Compile Include="Server\WindowManagementImpl.cs" />
     <Compile Include="SharedRendering\ISharedRendererHostFactory.cs" />
     <Compile Include="SharedRendering\SharedRendererHost.cs" />
     <Compile Include="Toolbar\DebugToolbarProvider.cs" />
@@ -131,6 +114,17 @@
     <Compile Include="Toolbar\GameRuntimeToolbarProvider.cs" />
     <Compile Include="Toolbar\GenericToolbarEntry.cs" />
     <Compile Include="Toolbar\IToolbarProvider.cs" />
+    <Compile Include="Window\ConsoleEditorWindow.cs" />
+    <Compile Include="Window\ExtensionManagerEditorWindow.cs" />
+    <Compile Include="Window\HierarchyEditorWindow.cs" />
+    <Compile Include="Window\HostedEditorWindow.cs" />
+    <Compile Include="Window\IEditorWindowFactory.cs" />
+    <Compile Include="Window\IHostedWindow.cs" />
+    <Compile Include="Window\InspectorEditorWindow.cs" />
+    <Compile Include="Window\ProfilerEditorWindow.cs" />
+    <Compile Include="Window\StartEditorWindow.cs" />
+    <Compile Include="Window\WorldEditorWindow.cs" />
+    <Compile Include="Workspace\DefaultWindowManagement.cs" />
     <Content Include="Properties\AndroidManifest.xml">
       <Platforms>Android,Ouya</Platforms>
     </Content>
